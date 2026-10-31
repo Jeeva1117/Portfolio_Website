@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Loader2, Mail, Phone, MapPin, ExternalLink, Send } from 'lucide-react'
+import { Loader2, Mail, Phone, MapPin, Send } from 'lucide-react'
 import { LinkedinIcon, GithubIcon } from './Icons'
 import Globe from './Globe'
 

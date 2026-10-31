@@ -26,12 +26,6 @@ export default function Footer() {
       url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
       icon: LinkedinIcon,
     },
-    {
-      name: 'Portfolio',
-      label: 'jeevanantham3.netlify.app',
-      url: 'https://jeevanantham3.netlify.app/',
-      icon: ArrowUpRight,
-    },
   ]
 
   const handleNavClick = (e, href) => {
@@ -139,7 +133,7 @@ export default function Footer() {
 
         {/* Social Links Row with Thin Divider */}
         <div className="my-10 pt-8 border-t border-white/10">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
             {socialLinks.map((social) => {
               const Icon = social.icon
               return (
@@ -187,15 +181,6 @@ export default function Footer() {
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#71717a]">
           <p>© {currentYear} JEEVANANTHAM A. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
-            <a
-              href="https://jeevanantham3.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#9CA3AF] hover:text-[#CCFF00] transition-colors"
-            >
-              jeevanantham3.netlify.app
-            </a>
-            <span>·</span>
             <a href="#" className="hover:text-white transition-colors">
               Privacy Policy
             </a>
