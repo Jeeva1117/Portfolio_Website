@@ -205,16 +205,16 @@ export default function Hero({ onPreloadComplete }) {
         </div>
       </div>
 
-      {/* Layer 2: Authentic Professional Portrait Cutout (Overlapping Center of Title) */}
+      {/* Layer 2: Authentic Professional Portrait (Positioned in Front of PORTFOLIO Typography) */}
       <div
         ref={personRef}
         className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none translate-y-[100vh] will-change-transform"
       >
-        <div className="relative w-full max-w-[290px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[460px] flex items-end justify-center">
+        <div className="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[480px] flex items-end justify-center">
           <img
             src="/images/portrait-hero.png"
             alt="Jeevanantham A — AI Engineer"
-            className="w-full object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
+            className="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
           />
         </div>
       </div>
