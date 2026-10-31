@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { CheckCircle2, Loader2, Mail, Phone, MapPin } from 'lucide-react'
-import { InstagramIcon, YoutubeIcon, LinkedinIcon, GithubIcon } from './Icons'
+import { CheckCircle2, Loader2, Mail, Phone, MapPin, ExternalLink, Globe } from 'lucide-react'
+import { LinkedinIcon, GithubIcon } from './Icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -90,24 +90,22 @@ export default function Contact() {
 
   const socialLinks = [
     {
-      name: 'Instagram',
-      icon: InstagramIcon,
-      url: 'https://instagram.com',
-    },
-    {
-      name: 'YouTube',
-      icon: YoutubeIcon,
-      url: 'https://youtube.com',
+      name: 'GitHub',
+      label: 'Jeeva1117',
+      icon: GithubIcon,
+      url: 'https://github.com/Jeeva1117',
     },
     {
       name: 'LinkedIn',
+      label: 'Jeevanantham -aj',
       icon: LinkedinIcon,
       url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
     },
     {
-      name: 'GitHub',
-      icon: GithubIcon,
-      url: 'https://github.com/Jeeva1117',
+      name: 'Portfolio',
+      label: 'jeevanantham3.netlify.app',
+      icon: Globe,
+      url: 'https://jeevanantham3.netlify.app/',
     },
   ]
 
@@ -132,6 +130,9 @@ export default function Contact() {
           <div ref={leftColRef} className="lg:col-span-5 space-y-10">
             {/* Giant Heading */}
             <div>
+              <span className="block text-xs font-mono uppercase tracking-widest text-[#CCFF00] mb-3">
+                // CONNECT &amp; COLLABORATE
+              </span>
               <h2
                 className="font-black uppercase tracking-tighter"
                 style={{
@@ -153,6 +154,19 @@ export default function Contact() {
 
             {/* Contact Details */}
             <div className="space-y-6 pt-4 border-t border-white/10">
+              {/* Full Name & Role */}
+              <div>
+                <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-1 font-mono">
+                  Identity:
+                </span>
+                <p className="text-xl md:text-2xl font-bold text-white">
+                  Jeevanantham A
+                </p>
+                <p className="text-sm font-mono text-[#CCFF00]">
+                  AI Engineer
+                </p>
+              </div>
+
               {/* Email */}
               <div>
                 <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-1 font-mono">
@@ -190,13 +204,13 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Media Row */}
+            {/* Social & Developer Profiles */}
             <div className="pt-2">
               <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-4 font-mono">
-                Follow us
+                Developer Profiles
               </span>
 
-              <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
                   return (
@@ -205,10 +219,15 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.04] hover:bg-white/[0.12] border border-white/15 hover:border-[#CCFF00] transition-all duration-300 shadow-lg hover:scale-105"
+                      className="group flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#CCFF00] transition-all duration-300 shadow-lg"
                       aria-label={social.name}
                     >
-                      <Icon className="w-5 h-5 text-white group-hover:text-[#CCFF00] transition-colors" />
+                      <Icon className="w-4 h-4 text-[#CCFF00] group-hover:scale-110 transition-transform" />
+                      <div className="text-left font-mono">
+                        <span className="block text-[10px] text-[#9CA3AF] uppercase">{social.name}</span>
+                        <span className="text-xs text-white font-medium group-hover:text-[#CCFF00] transition-colors">{social.label}</span>
+                      </div>
+                      <ExternalLink className="w-3 h-3 text-[#9CA3AF] group-hover:text-[#CCFF00] opacity-50 group-hover:opacity-100 ml-auto" />
                     </a>
                   )
                 })}
@@ -305,7 +324,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full py-4 rounded-xl font-semibold text-sm tracking-wider uppercase bg-white text-black hover:bg-neutral-200 active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2 shadow-xl disabled:opacity-50"
+                className="w-full py-4 rounded-xl font-semibold text-sm tracking-wider uppercase bg-white text-black hover:bg-[#CCFF00] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2 shadow-xl disabled:opacity-50"
               >
                 {status === 'sending' ? (
                   <>

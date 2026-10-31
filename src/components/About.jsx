@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,12 +12,28 @@ export default function About() {
   const portraitRef = useRef(null)
   const textWordsRef = useRef([])
 
-  // The paragraph text broken into individual words for GSAP word-by-word scrub reveal
-  const paragraphText = `An enthusiastic AI full-stack developer who loves to build state-of-the-art web and mobile applications. I love turning concepts into scalable products using tech stack like React, FastAPI, Node.js, and artificial intelligence technologies. I always strive to keep my code clean and design great user experience along with learning new technologies like LLMs, LangChain, and MCP.`
+  // Exact requested introduction quote
+  const paragraphText = `I'm Jeevanantham, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications.`
 
   const words = paragraphText.split(' ')
 
-  const highlightedWords = ['React,', 'FastAPI,', 'Node.js,', 'LLMs,', 'LangChain,', 'MCP.', 'artificial', 'intelligence']
+  const highlightedWords = [
+    'Jeevanantham,',
+    'AI',
+    'Engineer',
+    'Artificial',
+    'Intelligence,',
+    'Machine',
+    'Learning,',
+    'Generative',
+    'Agentic',
+    'AI.',
+    'intelligent',
+    'agents,',
+    'RAG',
+    'systems,',
+    'automation',
+  ]
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -114,7 +131,7 @@ export default function About() {
   ]
 
   const row3AI = [
-    'ChatGPT', 'Claude', 'Cursor AI', 'GitHub Copilot', 'Google Gemini', 'LangChain', 'MCP', 'Prompt Engineering', 'Agentic AI'
+    'ChatGPT', 'Claude', 'Cursor AI', 'GitHub Copilot', 'Google Gemini', 'LangChain', 'LangGraph', 'MCP', 'Prompt Engineering', 'Agentic AI'
   ]
 
   const row4Tools = [
@@ -180,14 +197,14 @@ export default function About() {
               <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 group-hover:border-white/25 bg-[#09090b] shadow-[0_25px_60px_rgba(0,0,0,0.9)] transition-all duration-500">
                 <img
                   src="/images/about-portrait.jpg"
-                  alt="Jeevanantham A (LEESHARK) — AI Full Stack Developer"
+                  alt="Jeevanantham A — AI Engineer"
                   className="w-full h-auto object-cover contrast-[1.02] group-hover:scale-[1.02] transition-transform duration-700"
                 />
 
                 {/* Tech badge overlay */}
                 <div className="absolute bottom-3 inset-x-3 py-2 px-3.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs text-[#9CA3AF] shadow-lg">
-                  <span className="font-mono text-[#CCFF00] font-semibold tracking-wider">● AI FULL STACK DEVELOPER</span>
-                  <span className="text-white/60 font-mono text-[11px]">CHENNAI</span>
+                  <span className="font-mono text-[#CCFF00] font-semibold tracking-wider">● AI ENGINEER</span>
+                  <span className="text-white/60 font-mono text-[11px]">CHENNAI, INDIA</span>
                 </div>
               </div>
             </div>
@@ -221,7 +238,7 @@ export default function About() {
               className="relative p-6 sm:p-8 md:p-10 rounded-[28px] md:rounded-[32px] bg-white/[0.05] hover:bg-white/[0.07] backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-colors duration-500"
             >
               <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-4 tracking-tight">
-                Hey, I'm <span className="text-[#CCFF00]">Jeevanantham A</span> (Jeeva).
+                Hey, I'm <span className="text-[#CCFF00]">Jeevanantham A</span>.
               </h3>
 
               <p className="text-base sm:text-lg md:text-[20px] leading-relaxed font-light text-left md:text-left flex flex-wrap gap-x-1.5 gap-y-1">
@@ -243,17 +260,59 @@ export default function About() {
                 })}
               </p>
 
-              {/* Education & Experience Highlights Pill Bar */}
-              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
+              {/* Personal Details & Live Profile Links Bar */}
+              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
                 <div>
-                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider">Education</span>
-                  <p className="text-white font-medium">B.Tech AI & Data Science (2023–2027)</p>
-                  <p className="text-[#CCFF00]">CGPA: 8.7 / 10.0 · Gojan SET</p>
+                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider font-semibold">Location &amp; Role</span>
+                  <div className="flex items-center gap-1.5 text-white font-medium">
+                    <MapPin className="w-3.5 h-3.5 text-[#CCFF00]" />
+                    <span>Chennai, Tamil Nadu, India</span>
+                  </div>
+                  <p className="text-[#CCFF00] font-semibold mt-0.5">Role: AI Engineer</p>
                 </div>
+
                 <div>
-                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider">Experience</span>
-                  <p className="text-white font-medium">AI/ML Intern @ VIP.S Tech</p>
-                  <p className="text-[#9CA3AF]">Data Analyst Intern @ Pro Codework</p>
+                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider font-semibold">Direct Contact</span>
+                  <a
+                    href="mailto:arjunjeeva33@gmail.com"
+                    className="flex items-center gap-1.5 text-white/90 hover:text-[#CCFF00] transition-colors break-all"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-[#CCFF00] shrink-0" />
+                    <span>arjunjeeva33@gmail.com</span>
+                  </a>
+                  <a
+                    href="tel:+917418573315"
+                    className="flex items-center gap-1.5 text-white/90 hover:text-[#CCFF00] transition-colors mt-0.5"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#CCFF00] shrink-0" />
+                    <span>+91 74185 73315</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Verified Online Profiles */}
+              <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+                <span className="text-[#71717a]">PROFILES:</span>
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://linkedin.com/in/jeevanantham-arjunkumar-33aj"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#9CA3AF] hover:text-[#CCFF00] transition-colors flex items-center gap-1"
+                  >
+                    <span>LinkedIn: Jeevanantham -aj</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <a
+                    href="https://github.com/Jeeva1117"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#9CA3AF] hover:text-[#CCFF00] transition-colors flex items-center gap-1"
+                  >
+                    <span>GitHub: Jeeva1117</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -261,8 +320,8 @@ export default function About() {
         </div>
       </div>
 
-      {/* Bottom Skills Marquee Ticker */}
-      <div className="mt-20 md:mt-28 w-full bg-[#030303] border-t border-white/5 py-6">
+      {/* Bottom Skills Marquee Ticker (Anchored with id="skills") */}
+      <div id="skills" className="mt-20 md:mt-28 w-full bg-[#030303] border-t border-white/5 py-6">
         <div className="max-w-[1440px] mx-auto px-6 mb-3 flex items-center justify-between text-xs font-mono text-[#9CA3AF] uppercase tracking-widest">
           <span>// CORE TECHNICAL CAPABILITIES</span>
           <span className="text-[#CCFF00]">CONTINUOUS STREAM</span>
@@ -283,4 +342,3 @@ export default function About() {
     </section>
   )
 }
-

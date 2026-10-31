@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import { ArrowUpRight } from 'lucide-react'
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState('LEESHARK')
+  const [displayText, setDisplayText] = useState('JEEVANANTHAM')
   const [imageLoaded, setImageLoaded] = useState(false)
 
   const sectionRef = useRef(null)
@@ -20,7 +20,6 @@ export default function Hero() {
     img.onload = () => {
       setImageLoaded(true)
     }
-    // Fallback if already cached
     if (img.complete) {
       setImageLoaded(true)
     }
@@ -33,7 +32,7 @@ export default function Hero() {
     document.body.style.overflow = 'hidden'
 
     const targetWord = 'PORTFOLIO'
-    const startWord = 'LEESHARK'
+    const startWord = 'JEEVANANTHAM'
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*'
     let scrambleInterval = null
     let timeoutId = null
@@ -52,7 +51,7 @@ export default function Hero() {
     // Step 1: Wait approx 1 second after page load
     timeoutId = setTimeout(() => {
       let iteration = 0
-      const totalSteps = 18
+      const totalSteps = 20
 
       // Step 2: Progressive letter scramble effect
       scrambleInterval = setInterval(() => {
@@ -177,7 +176,7 @@ export default function Hero() {
 
           <img
             src="/images/portrait-hero.png"
-            alt="Jeevanantham A (LEESHARK) — AI Full Stack Developer"
+            alt="Jeevanantham A — AI Engineer"
             className="w-[340px] sm:w-[440px] md:w-[540px] lg:w-[620px] max-h-[84vh] object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)]"
           />
         </div>
@@ -191,11 +190,11 @@ export default function Hero() {
           className="text-center md:text-left drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
         >
           <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-tight">
-            <span className="font-extrabold uppercase">Software</span>{' '}
-            <span className="font-light italic text-[#9CA3AF] editorial-serif">Developer</span>
+            <span className="font-extrabold uppercase">AI</span>{' '}
+            <span className="font-light italic text-[#9CA3AF] editorial-serif">Engineer</span>
           </div>
           <p className="text-xs md:text-sm text-[#9CA3AF] tracking-wider uppercase mt-1 font-mono">
-            AI Engineer · Machine Learning · Generative AI
+            Machine Learning · Generative AI · Agentic AI
           </p>
         </div>
 
@@ -239,4 +238,3 @@ export default function Hero() {
     </section>
   )
 }
-
