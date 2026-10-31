@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { CheckCircle2, Loader2, Mail, Phone, MapPin, ExternalLink, Send } from 'lucide-react'
+import { Loader2, Mail, Phone, MapPin, ExternalLink, Send } from 'lucide-react'
 import { LinkedinIcon, GithubIcon } from './Icons'
 import Globe from './Globe'
 
@@ -71,46 +71,60 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    // Strict validation
-    if (!formData.name.trim() || formData.name.trim().length < 2) {
-      setErrorMessage('Please provide your full name.')
+    // 1. Validate required fields
+    const name = formData.name.trim()
+    const email = formData.email.trim()
+    const message = formData.message.trim()
+    const phone = formData.phone.trim()
+    const subject = formData.subject.trim()
+
+    if (!name) {
+      setErrorMessage('Please provide your name.')
       return
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!formData.email.trim() || !emailPattern.test(formData.email.trim())) {
+    if (!email || !emailPattern.test(email)) {
       setErrorMessage('Please provide a valid email address.')
       return
     }
 
-    if (!formData.message.trim() || formData.message.trim().length < 5) {
-      setErrorMessage('Please provide a descriptive message.')
+    if (!message) {
+      setErrorMessage('Please enter your message.')
       return
     }
 
-    setStatus('sending')
     setErrorMessage('')
+    setStatus('sending')
 
-    // Real functional submission: Dispatch to default mail client & persist
-    const mailtoSubject = encodeURIComponent(formData.subject || `Inquiry from ${formData.name}`)
-    const mailtoBody = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\n\nMessage:\n${formData.message}`
-    )
-    const mailtoUrl = `mailto:arjunjeeva33@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`
+    // 2. Generate WhatsApp formatted enquiry message
+    const whatsappNumber = '917418573315'
+    const whatsappMessage = `Hello Jeevanantham!
+I am contacting you through your portfolio website.
 
+Name: ${name}
+Email: ${email}
+Phone: ${phone || 'Not provided'}
+Subject: ${subject || 'Not provided'}
+
+Message:
+${message}
+
+Thank you!`
+
+    // 3. Construct click-to-chat URL with URL-encoded message
+    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`
+
+    // 4. Open WhatsApp in new tab (with direct fallback if popups are blocked)
+    const newTab = window.open(whatsappURL, '_blank', 'noopener,noreferrer')
+    if (!newTab || newTab.closed || typeof newTab.closed === 'undefined') {
+      window.location.href = whatsappURL
+    }
+
+    // 5. Reset sending state smoothly
     setTimeout(() => {
-      // Trigger native email client with pre-filled content
-      window.location.href = mailtoUrl
-      setStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
-      })
-      setTimeout(() => setStatus('idle'), 8000)
-    }, 1000)
+      setStatus('idle')
+    }, 1200)
   }
 
   const socialLinks = [
@@ -355,7 +369,7 @@ export default function Contact() {
                 {status === 'sending' ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Preparing Transmission...</span>
+                    <span>Opening WhatsApp...</span>
                   </>
                 ) : (
                   <>
@@ -364,14 +378,6 @@ export default function Contact() {
                   </>
                 )}
               </button>
-
-              {/* Status feedback alerts */}
-              {status === 'success' && (
-                <div className="p-4 rounded-xl bg-[#CCFF00]/10 border border-[#CCFF00]/30 flex items-center gap-3 text-[#CCFF00] text-sm">
-                  <CheckCircle2 className="w-5 h-5 shrink-0" />
-                  <span>Your message dispatch was prepared! I will respond promptly to your inquiry.</span>
-                </div>
-              )}
             </form>
           </div>
         </div>
