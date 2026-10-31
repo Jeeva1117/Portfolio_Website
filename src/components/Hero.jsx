@@ -183,19 +183,6 @@ export default function Hero({ onPreloadComplete }) {
               Contact
             </span>
           </a>
-
-          {/* Live Portfolio Button */}
-          <a
-            href="https://jeevanantham3.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-3.5 py-1.5 md:px-4 md:py-2.5 rounded-full border border-[#CCFF00]/40 flex items-center gap-1.5 backdrop-blur-md bg-black/40 hover:bg-[#CCFF00]/10 hover:border-[#CCFF00] text-[#CCFF00] transition-all duration-300 cursor-pointer shadow-lg"
-          >
-            <span className="text-[11px] md:text-xs font-mono tracking-wider font-medium uppercase">
-              Live
-            </span>
-            <ArrowUpRight className="w-3 h-3 text-[#CCFF00]" />
-          </a>
         </div>
       </div>
 

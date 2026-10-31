@@ -15,7 +15,6 @@ A premium, cinematic developer portfolio website built with **React 19**, **Tail
 - **Phone**: [+91 74185 73315](tel:+917418573315)
 - **GitHub**: [https://github.com/Jeeva1117](https://github.com/Jeeva1117)
 - **LinkedIn**: [https://linkedin.com/in/jeevanantham-arjunkumar-33aj](https://linkedin.com/in/jeevanantham-arjunkumar-33aj) (Jeevanantham -aj)
-- **Live Portfolio**: [https://jeevanantham3.netlify.app/](https://jeevanantham3.netlify.app/)
 
 ---
 
