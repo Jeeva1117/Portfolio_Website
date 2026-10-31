@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -10,31 +9,8 @@ export default function About() {
   const headingDesktopRef = useRef(null)
   const headingMobileRef = useRef(null)
   const portraitRef = useRef(null)
-  const textWordsRef = useRef([])
-
-  // Exact requested introduction quote
-  const paragraphText = `I'm Jeevanantham A, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications.`
-
-  const words = paragraphText.split(' ')
-
-  const highlightedWords = [
-    'Jeevanantham',
-    'A,',
-    'AI',
-    'Engineer',
-    'Artificial',
-    'Intelligence,',
-    'Machine',
-    'Learning,',
-    'Generative',
-    'Agentic',
-    'AI.',
-    'intelligent',
-    'agents,',
-    'RAG',
-    'systems,',
-    'automation',
-  ]
+  const cardRef = useRef(null)
+  const paragraphsRef = useRef([])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -96,24 +72,40 @@ export default function About() {
         )
       }
 
-      // Word-by-word scroll reveal animation with GSAP ScrollTrigger
-      if (textWordsRef.current.length > 0) {
+      // Card entrance and paragraph stagger animation
+      if (cardRef.current) {
         gsap.fromTo(
-          textWordsRef.current,
+          cardRef.current,
+          { opacity: 0, y: 50 },
           {
-            color: '#52525b',
-            opacity: 0.2,
-          },
-          {
-            color: '#ffffff',
             opacity: 1,
-            stagger: 0.1,
-            ease: 'none',
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
             scrollTrigger: {
-              trigger: '#about-card',
+              trigger: cardRef.current,
               start: 'top 85%',
-              end: 'bottom 50%',
-              scrub: true,
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        )
+      }
+
+      // Subtle paragraph stagger entrance
+      if (paragraphsRef.current.length > 0) {
+        gsap.fromTo(
+          paragraphsRef.current,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.18,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cardRef.current,
+              start: 'top 80%',
+              toggleActions: 'play reverse play reverse',
             },
           }
         )
@@ -186,7 +178,7 @@ export default function About() {
 
         {/* Desktop 2-Column Wireframe Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Developer Portrait */}
+          {/* Left Column: Developer Profile Portrait */}
           <div className="lg:col-span-5 flex justify-center lg:justify-start">
             <div
               ref={portraitRef}
@@ -198,20 +190,14 @@ export default function About() {
               <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 group-hover:border-white/25 bg-[#09090b] shadow-[0_25px_60px_rgba(0,0,0,0.9)] transition-all duration-500">
                 <img
                   src="/images/about-portrait.jpg"
-                  alt="Jeevanantham A — AI Engineer"
+                  alt="Jeevanantham"
                   className="w-full h-auto object-cover contrast-[1.02] group-hover:scale-[1.02] transition-transform duration-700"
                 />
-
-                {/* Tech badge overlay */}
-                <div className="absolute bottom-3 inset-x-3 py-2 px-3.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs text-[#9CA3AF] shadow-lg">
-                  <span className="font-mono text-[#CCFF00] font-semibold tracking-wider">● AI ENGINEER</span>
-                  <span className="text-white/60 font-mono text-[11px]">CHENNAI, INDIA</span>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Giant INTRO Heading & Glassmorphism Card */}
+          {/* Right Column: Giant INTRO Heading & LinkedIn-Inspired Introduction Card */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Giant INTRO Heading for Desktop */}
             <div className="hidden lg:block mb-4">
@@ -233,88 +219,24 @@ export default function About() {
               </h2>
             </div>
 
-            {/* Premium Glassmorphism Description Card */}
+            {/* Clean Professional Glassmorphism Introduction Card */}
             <div
+              ref={cardRef}
               id="about-card"
-              className="relative p-6 sm:p-8 md:p-10 rounded-[28px] md:rounded-[32px] bg-white/[0.05] hover:bg-white/[0.07] backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-colors duration-500"
+              className="relative p-7 sm:p-9 md:p-11 rounded-[28px] md:rounded-[32px] bg-white/[0.05] hover:bg-white/[0.07] backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-colors duration-500"
             >
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-4 tracking-tight">
-                Hey, I'm <span className="text-[#CCFF00]">Jeevanantham A</span>.
-              </h3>
+              <div className="space-y-5 sm:space-y-6 text-[15.5px] sm:text-[17px] md:text-[18px] leading-[1.8] font-light text-gray-300">
+                <p ref={(el) => (paragraphsRef.current[0] = el)}>
+                  Hello! I'm <span className="text-white font-semibold">Jeevanantham</span>, an aspiring technology professional passionate about building intelligent solutions that solve real-world problems. I enjoy exploring <span className="text-[#CCFF00] font-medium">Artificial Intelligence</span>, <span className="text-white font-medium">Machine Learning</span>, <span className="text-[#CCFF00] font-medium">Generative AI</span>, and <span className="text-[#CCFF00] font-medium">Agentic AI</span>.
+                </p>
 
-              <p className="text-base sm:text-lg md:text-[20px] leading-relaxed font-light text-left md:text-left flex flex-wrap gap-x-1.5 gap-y-1">
-                {words.map((word, index) => {
-                  const isHighlighted = highlightedWords.some((hw) =>
-                    word.toLowerCase().includes(hw.toLowerCase().replace(/[.,]/g, ''))
-                  )
-                  return (
-                    <span
-                      key={index}
-                      ref={(el) => (textWordsRef.current[index] = el)}
-                      className={`transition-colors duration-200 ${
-                        isHighlighted ? 'font-semibold text-white' : ''
-                      }`}
-                    >
-                      {word}
-                    </span>
-                  )
-                })}
-              </p>
+                <p ref={(el) => (paragraphsRef.current[1] = el)}>
+                  I'm particularly interested in developing <span className="text-white font-medium">LLM-powered applications</span>, <span className="text-[#CCFF00] font-medium">Retrieval-Augmented Generation (RAG)</span> systems, and <span className="text-white font-medium">intelligent AI agents</span>. Through hands-on projects, I continuously explore new technologies, strengthen my problem-solving skills, and turn innovative ideas into practical applications.
+                </p>
 
-              {/* Personal Details & Live Profile Links Bar */}
-              <div className="mt-8 pt-6 border-t border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
-                <div>
-                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider font-semibold">Location &amp; Role</span>
-                  <div className="flex items-center gap-1.5 text-white font-medium">
-                    <MapPin className="w-3.5 h-3.5 text-[#CCFF00]" />
-                    <span>Chennai, Tamil Nadu, India</span>
-                  </div>
-                  <p className="text-[#CCFF00] font-semibold mt-0.5">Role: AI Engineer</p>
-                </div>
-
-                <div>
-                  <span className="text-[#9CA3AF] block mb-1 uppercase tracking-wider font-semibold">Direct Contact</span>
-                  <a
-                    href="mailto:arjunjeeva33@gmail.com"
-                    className="flex items-center gap-1.5 text-white/90 hover:text-[#CCFF00] transition-colors break-all"
-                  >
-                    <Mail className="w-3.5 h-3.5 text-[#CCFF00] shrink-0" />
-                    <span>arjunjeeva33@gmail.com</span>
-                  </a>
-                  <a
-                    href="tel:+917418573315"
-                    className="flex items-center gap-1.5 text-white/90 hover:text-[#CCFF00] transition-colors mt-0.5"
-                  >
-                    <Phone className="w-3.5 h-3.5 text-[#CCFF00] shrink-0" />
-                    <span>+91 74185 73315</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Verified Online Profiles */}
-              <div className="mt-5 pt-4 border-t border-white/5 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-                <span className="text-[#71717a]">PROFILES:</span>
-                <div className="flex items-center gap-4">
-                  <a
-                    href="https://linkedin.com/in/jeevanantham-arjunkumar-33aj"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#9CA3AF] hover:text-[#CCFF00] transition-colors flex items-center gap-1"
-                  >
-                    <span>LinkedIn: Jeevanantham -aj</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  <span className="text-white/20">·</span>
-                  <a
-                    href="https://github.com/Jeeva1117"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#9CA3AF] hover:text-[#CCFF00] transition-colors flex items-center gap-1"
-                  >
-                    <span>GitHub: Jeeva1117</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                </div>
+                <p ref={(el) => (paragraphsRef.current[2] = el)}>
+                  I believe in continuous learning, experimenting with emerging technologies, and building AI solutions that create meaningful impact.
+                </p>
               </div>
             </div>
           </div>
