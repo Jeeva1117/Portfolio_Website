@@ -30,7 +30,7 @@ export default function Projects() {
         'React',
         'PostgreSQL',
       ],
-      image: '/images/project-rag.jpg',
+      image: '/images/project-rag.webp',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: false,
@@ -52,7 +52,7 @@ export default function Projects() {
         'Computer Vision',
         '3D Avatar Animation',
       ],
-      image: '/images/project-sign.jpg',
+      image: '/images/project-sign.webp',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: true,
@@ -75,7 +75,7 @@ export default function Projects() {
         'FastAPI',
         'PostgreSQL',
       ],
-      image: '/images/project-data-analyst.svg',
+      image: '/images/project-data-analyst.webp',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: false,
@@ -83,7 +83,7 @@ export default function Projects() {
     },
     {
       num: '04',
-      title: 'TubeNext – AI-Powered YouTube Analytics',
+      title: 'TubeNexa – AI-Powered YouTube Analytics',
       domain: 'AI Analytics · Machine Learning',
       description:
         'An AI-powered YouTube analytics platform that evaluates channel performance, analyzes video metrics, identifies growth opportunities, and provides intelligent recommendations for content creators.',
@@ -95,7 +95,7 @@ export default function Projects() {
         'LLMs',
         'Data Visualization',
       ],
-      image: '/images/project-tubenext.svg',
+      image: '/images/project-tubenexa.webp',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: true,
@@ -103,7 +103,7 @@ export default function Projects() {
     },
     {
       num: '05',
-      title: 'AgroNext – AI-Powered Plant Disease Detection & Voice Assistant',
+      title: 'AgroNixa – AI-Powered Plant Disease Detection & Voice Assistant',
       domain: 'AI · Machine Learning · Voice AI',
       description:
         'An intelligent agricultural AI assistant that detects plant diseases from leaf images, identifies potential infections, and provides relevant treatment recommendations. It also allows farmers to interact through voice.',
@@ -119,7 +119,7 @@ export default function Projects() {
         'NLP',
         'FastAPI',
       ],
-      image: '/images/project-agronext.svg',
+      image: '/images/project-agronixa.webp',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: false,
@@ -271,7 +271,7 @@ export default function Projects() {
                       {/* Ambient Image Glow on Hover */}
                       <div className="absolute -inset-1 bg-gradient-to-r from-[#CCFF00]/10 to-[#10b981]/10 rounded-2xl blur-xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                      <div className="relative aspect-[16/10] w-full overflow-hidden">
+                      <div className="relative aspect-[16/9] w-full overflow-hidden">
                         <img
                           src={project.image}
                           alt={project.title}
