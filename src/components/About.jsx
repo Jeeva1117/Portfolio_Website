@@ -8,6 +8,7 @@ export default function About() {
   const sectionRef = useRef(null)
   const headingDesktopRef = useRef(null)
   const headingMobileRef = useRef(null)
+  const portraitRef = useRef(null)
   const textWordsRef = useRef([])
 
   // The paragraph text broken into individual words for GSAP word-by-word scrub reveal
@@ -19,6 +20,26 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Portrait entrance animation
+      if (portraitRef.current) {
+        gsap.fromTo(
+          portraitRef.current,
+          { opacity: 0, y: 60, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: portraitRef.current,
+              start: 'top 85%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        )
+      }
+
       // Intro Heading animation for desktop
       if (headingDesktopRef.current) {
         gsap.fromTo(
@@ -146,31 +167,34 @@ export default function About() {
         </div>
 
         {/* Desktop 2-Column Wireframe Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           {/* Left Column: Developer Portrait */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-start">
-            <div className="relative group">
-              {/* Subtle ambient glow behind portrait */}
-              <div className="absolute -inset-4 bg-gradient-to-tr from-[#CCFF00]/10 via-transparent to-white/5 rounded-3xl blur-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
-              
-              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#080808] shadow-[0_25px_60px_rgba(0,0,0,0.9)]">
+          <div className="lg:col-span-5 flex justify-center lg:justify-start">
+            <div
+              ref={portraitRef}
+              className="relative group w-full max-w-[340px] sm:max-w-[360px] lg:max-w-[390px]"
+            >
+              {/* Soft Ambient Glow behind portrait */}
+              <div className="absolute -inset-2 md:-inset-3 bg-gradient-to-tr from-[#CCFF00]/15 via-white/5 to-[#10b981]/15 rounded-3xl blur-2xl opacity-60 group-hover:opacity-95 transition-opacity duration-700 pointer-events-none" />
+
+              <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-white/10 group-hover:border-white/25 bg-[#09090b] shadow-[0_25px_60px_rgba(0,0,0,0.9)] transition-all duration-500">
                 <img
-                  src="/images/portrait-studio.jpg"
-                  alt="Jeevanantham A — Professional Studio Portrait"
-                  className="w-[190px] sm:w-[220px] lg:w-[260px] h-auto object-cover grayscale contrast-110 hover:grayscale-0 transition-all duration-700"
+                  src="/images/about-portrait.jpg"
+                  alt="Jeevanantham A (LEESHARK) — AI Full Stack Developer"
+                  className="w-full h-auto object-cover contrast-[1.02] group-hover:scale-[1.02] transition-transform duration-700"
                 />
-                
+
                 {/* Tech badge overlay */}
-                <div className="absolute bottom-3 inset-x-3 py-1.5 px-3 rounded-lg bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-between text-[11px] text-[#9CA3AF]">
-                  <span className="font-mono text-[#CCFF00]">● AI ENGINEER</span>
-                  <span className="text-white/60">CHENNAI</span>
+                <div className="absolute bottom-3 inset-x-3 py-2 px-3.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between text-xs text-[#9CA3AF] shadow-lg">
+                  <span className="font-mono text-[#CCFF00] font-semibold tracking-wider">● AI FULL STACK DEVELOPER</span>
+                  <span className="text-white/60 font-mono text-[11px]">CHENNAI</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right Column: Giant INTRO Heading & Glassmorphism Card */}
-          <div className="lg:col-span-8 flex flex-col justify-center">
+          <div className="lg:col-span-7 flex flex-col justify-center">
             {/* Giant INTRO Heading for Desktop */}
             <div className="hidden lg:block mb-4">
               <h2

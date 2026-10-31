@@ -63,3 +63,4 @@ rgba = cv2.merge([b, g, r, feathered])
 cv2.imwrite('public/images/portrait-hero.png', rgba)
 
 print("SUCCESS: Generated portrait-hero-black.jpg and portrait-hero.png")
+
