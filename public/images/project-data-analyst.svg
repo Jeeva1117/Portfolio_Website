@@ -1,0 +1,186 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" style="background:#050505">
+  <defs>
+    <radialGradient id="daGlow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#062e1e" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#02150d" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CCFF00"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="cyanLimeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#CCFF00"/>
+    </linearGradient>
+    <filter id="glowFilt" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#daGlow)"/>
+
+  <!-- Subtle Perspective Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="1000"/>
+    <line x1="300" y1="0" x2="300" y2="1000"/>
+    <line x1="500" y1="0" x2="500" y2="1000"/>
+    <line x1="700" y1="0" x2="700" y2="1000"/>
+    <line x1="900" y1="0" x2="900" y2="1000"/>
+    <line x1="1100" y1="0" x2="1100" y2="1000"/>
+    <line x1="1300" y1="0" x2="1300" y2="1000"/>
+    <line x1="1500" y1="0" x2="1500" y2="1000"/>
+    <line x1="0" y1="200" x2="1600" y2="200"/>
+    <line x1="0" y1="400" x2="1600" y2="400"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="800" x2="1600" y2="800"/>
+  </g>
+
+  <!-- Central Floating 3D Chart Canvas -->
+  <g transform="translate(180, 140)">
+    <!-- Back drop shadow & glass panel -->
+    <rect width="820" height="680" rx="18" fill="#090b0e" fill-opacity="0.88" stroke="#ffffff" stroke-opacity="0.12"/>
+    
+    <!-- Header -->
+    <text x="36" y="52" fill="#CCFF00" font-family="'Space Grotesk', Inter, sans-serif" font-size="13" font-weight="700" letter-spacing="2">AI DATA ANALYST // LANGGRAPH ORCHESTRATOR</text>
+    <rect x="710" y="36" width="76" height="24" rx="12" fill="#CCFF00" fill-opacity="0.15" stroke="#CCFF00" stroke-opacity="0.4"/>
+    <text x="748" y="52" text-anchor="middle" fill="#CCFF00" font-family="Inter, sans-serif" font-size="10" font-weight="700">ONLINE</text>
+    <line x1="36" y1="72" x2="784" y2="72" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <!-- NL Question Box -->
+    <rect x="36" y="96" width="748" height="64" rx="10" fill="#13171e" stroke="#ffffff" stroke-opacity="0.08"/>
+    <circle cx="68" cy="128" r="16" fill="#CCFF00" fill-opacity="0.12"/>
+    <text x="68" y="133" text-anchor="middle" fill="#CCFF00" font-family="monospace" font-size="14" font-weight="bold">AI</text>
+    <text x="100" y="122" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">USER PROMPT:</text>
+    <text x="100" y="142" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="600">"Correlate user churn probability against API latency spikes across Q3"</text>
+
+    <!-- Visual 3D Chart Grid Area -->
+    <g transform="translate(36, 185)">
+      <rect width="460" height="420" rx="12" fill="#0b0e13" stroke="#ffffff" stroke-opacity="0.06"/>
+      <text x="24" y="36" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="700">Predictive Churn Distribution vs Response Latency</text>
+      <text x="24" y="54" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">Scikit-learn Logistic Regression Model · R²: 0.942</text>
+
+      <!-- Chart axes -->
+      <line x1="50" y1="360" x2="420" y2="360" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5"/>
+      <line x1="50" y1="80" x2="50" y2="360" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5"/>
+
+      <!-- Grid lines -->
+      <line x1="50" y1="290" x2="420" y2="290" stroke="#ffffff" stroke-opacity="0.05" stroke-dasharray="4 4"/>
+      <line x1="50" y1="220" x2="420" y2="220" stroke="#ffffff" stroke-opacity="0.05" stroke-dasharray="4 4"/>
+      <line x1="50" y1="150" x2="420" y2="150" stroke="#ffffff" stroke-opacity="0.05" stroke-dasharray="4 4"/>
+
+      <!-- Bar Columns in 3D Isometric tint -->
+      <rect x="75" y="270" width="28" height="90" rx="4" fill="#10b981" fill-opacity="0.5"/>
+      <rect x="125" y="230" width="28" height="130" rx="4" fill="#10b981" fill-opacity="0.65"/>
+      <rect x="175" y="180" width="28" height="180" rx="4" fill="#CCFF00" fill-opacity="0.75"/>
+      <rect x="225" y="130" width="28" height="230" rx="4" fill="#CCFF00" fill-opacity="0.85"/>
+      <rect x="275" y="100" width="28" height="260" rx="4" fill="#CCFF00"/>
+      <rect x="325" y="145" width="28" height="215" rx="4" fill="#10b981" fill-opacity="0.75"/>
+      <rect x="375" y="210" width="28" height="150" rx="4" fill="#10b981" fill-opacity="0.5"/>
+
+      <!-- Polynomial regression curve -->
+      <path d="M 60 320 C 120 290, 180 150, 290 90 S 380 130, 415 230" fill="none" stroke="#CCFF00" stroke-width="3.5" filter="url(#glowFilt)"/>
+
+      <!-- Data scatter points -->
+      <circle cx="89" cy="270" r="4.5" fill="#ffffff"/>
+      <circle cx="139" cy="230" r="4.5" fill="#ffffff"/>
+      <circle cx="189" cy="180" r="5" fill="#CCFF00" filter="url(#glowFilt)"/>
+      <circle cx="239" cy="130" r="5" fill="#CCFF00" filter="url(#glowFilt)"/>
+      <circle cx="289" cy="100" r="6" fill="#CCFF00" filter="url(#glowFilt)"/>
+      <circle cx="339" cy="145" r="4.5" fill="#ffffff"/>
+      <circle cx="389" cy="210" r="4.5" fill="#ffffff"/>
+    </g>
+
+    <!-- Side Metrics in Main Panel -->
+    <g transform="translate(516, 185)">
+      <!-- Text-to-SQL card -->
+      <rect width="268" height="180" rx="10" fill="#12161f" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="20" y="32" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700">TEXT-TO-SQL PIPELINE</text>
+      
+      <rect x="20" y="48" width="228" height="110" rx="6" fill="#090c10"/>
+      <text x="32" y="72" fill="#06b6d4" font-family="monospace" font-size="10">SELECT cluster, AVG(latency)</text>
+      <text x="32" y="90" fill="#06b6d4" font-family="monospace" font-size="10">FROM telemetry_logs</text>
+      <text x="32" y="108" fill="#10b981" font-family="monospace" font-size="10">WHERE quarter = 'Q3'</text>
+      <text x="32" y="126" fill="#CCFF00" font-family="monospace" font-size="10">GROUP BY cluster;</text>
+      <text x="32" y="148" fill="#9CA3AF" font-family="monospace" font-size="9">> Executed in 18ms [PostgreSQL]</text>
+
+      <!-- Automated Insight Badge -->
+      <rect y="200" width="268" height="220" rx="10" fill="#12161f" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="20" y="232" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700">ACTIONABLE INSIGHT</text>
+      <text x="20" y="260" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" font-weight="600" width="228">Latency > 420ms triggers a 3.8x surge in user dropout.</text>
+      <text x="20" y="295" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" line-height="1.4">Recommendation: Deploy Redis caching to cluster-US-East to stabilize latency below 120ms.</text>
+
+      <rect x="20" y="360" width="228" height="38" rx="6" fill="#CCFF00" fill-opacity="0.12" stroke="#CCFF00" stroke-opacity="0.3"/>
+      <text x="134" y="384" text-anchor="middle" fill="#CCFF00" font-family="Inter, sans-serif" font-size="11" font-weight="700">CONFIDENCE: 98.4%</text>
+    </g>
+  </g>
+
+  <!-- Right Floating 3D Telemetry Glass Orb -->
+  <g transform="translate(1040, 200)">
+    <rect width="400" height="540" rx="16" fill="#0b0e14" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="32" y="48" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">MULTI-AGENT STATUS</text>
+    <line x1="32" y1="64" x2="368" y2="64" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <!-- Workflow nodes -->
+    <g transform="translate(40, 90)">
+      <circle cx="20" cy="20" r="16" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="2"/>
+      <text x="20" y="25" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">✓</text>
+      <text x="56" y="18" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="600">Schema Inspection</text>
+      <text x="56" y="34" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">PostgreSQL 16 Tables Verified</text>
+
+      <line x1="20" y1="42" x2="20" y2="78" stroke="#10b981" stroke-width="2" stroke-dasharray="3 3"/>
+
+      <g transform="translate(0, 80)">
+        <circle cx="20" cy="20" r="16" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-width="2"/>
+        <text x="20" y="25" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="11" font-weight="bold">✓</text>
+        <text x="56" y="18" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="600">Automated EDA &amp; Clean</text>
+        <text x="56" y="34" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">Pandas &amp; NumPy Zero Missing</text>
+      </g>
+
+      <line x1="20" y1="122" x2="20" y2="158" stroke="#CCFF00" stroke-width="2"/>
+
+      <g transform="translate(0, 160)">
+        <circle cx="20" cy="20" r="16" fill="#CCFF00" fill-opacity="0.2" stroke="#CCFF00" stroke-width="2" filter="url(#glowFilt)"/>
+        <circle cx="20" cy="20" r="6" fill="#CCFF00"/>
+        <text x="56" y="18" fill="#CCFF00" font-family="Inter, sans-serif" font-size="13" font-weight="700">LangGraph Synthesis</text>
+        <text x="56" y="34" fill="#D1D5DB" font-family="Inter, sans-serif" font-size="11">Generating Executive Visuals</text>
+      </g>
+    </g>
+
+    <!-- Correlation Mini Matrix -->
+    <g transform="translate(32, 330)">
+      <text x="0" y="0" fill="#9CA3AF" font-family="'Space Grotesk', sans-serif" font-size="11" font-weight="700">CORRELATION MATRIX</text>
+      <rect x="0" y="16" width="336" height="140" rx="8" fill="#06080b" stroke="#ffffff" stroke-opacity="0.06"/>
+      
+      <!-- 4x4 matrix heat tiles -->
+      <rect x="18" y="32" width="68" height="24" rx="4" fill="#CCFF00"/>
+      <text x="52" y="48" text-anchor="middle" fill="#000000" font-family="monospace" font-size="10" font-weight="bold">1.00</text>
+
+      <rect x="94" y="32" width="68" height="24" rx="4" fill="#10b981" fill-opacity="0.8"/>
+      <text x="128" y="48" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">0.78</text>
+
+      <rect x="170" y="32" width="68" height="24" rx="4" fill="#06b6d4" fill-opacity="0.4"/>
+      <text x="204" y="48" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">-0.24</text>
+
+      <rect x="246" y="32" width="68" height="24" rx="4" fill="#10b981" fill-opacity="0.9"/>
+      <text x="280" y="48" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">0.86</text>
+
+      <!-- Row 2 -->
+      <rect x="18" y="64" width="68" height="24" rx="4" fill="#10b981" fill-opacity="0.8"/>
+      <text x="52" y="80" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">0.78</text>
+
+      <rect x="94" y="64" width="68" height="24" rx="4" fill="#CCFF00"/>
+      <text x="128" y="80" text-anchor="middle" fill="#000000" font-family="monospace" font-size="10" font-weight="bold">1.00</text>
+
+      <rect x="170" y="64" width="68" height="24" rx="4" fill="#06b6d4" fill-opacity="0.6"/>
+      <text x="204" y="80" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">-0.48</text>
+
+      <rect x="246" y="64" width="68" height="24" rx="4" fill="#10b981" fill-opacity="0.7"/>
+      <text x="280" y="80" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="10">0.71</text>
+
+      <text x="18" y="128" fill="#10b981" font-family="monospace" font-size="10">> Multi-agent consensus: VALIDATED</text>
+    </g>
+  </g>
+</svg>

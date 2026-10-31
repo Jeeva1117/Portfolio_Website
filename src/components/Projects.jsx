@@ -14,61 +14,122 @@ export default function Projects() {
   const projectsData = [
     {
       num: '01',
-      titleMain: 'SELF-HEALING',
-      titleAccent: 'rag',
-      titleEnd: 'AGENT',
+      title: 'Self-Healing RAG Agent',
+      domain: 'Generative AI · Agentic AI',
       description:
-        'An enterprise-grade Retrieval-Augmented Generation (RAG) agent built with FastAPI, LangGraph, and PostgreSQL. Features an autonomous self-healing feedback loop that dynamically detects hallucination, validates retrieved semantic chunks, and re-queries for zero-defect knowledge synthesis.',
-      tech: ['Python', 'FastAPI', 'LangGraph', 'LLMs', 'PostgreSQL'],
+        'An intelligent self-healing Retrieval-Augmented Generation system that automatically detects retrieval failures, evaluates response quality, and improves answers through multi-agent workflows.',
+      tech: [
+        'Python',
+        'LangGraph',
+        'LangChain',
+        'Groq LLM',
+        'RAG',
+        'Hybrid Search',
+        'Reranking',
+        'FastAPI',
+        'React',
+        'PostgreSQL',
+      ],
       image: '/images/project-rag.jpg',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: false,
+      isFlagship: true,
     },
     {
       num: '02',
-      titleMain: 'AI SPEECH-TO-SIGN',
-      titleAccent: 'language',
-      titleEnd: 'TRANSLATOR',
+      title: 'AI Speech-to-Sign Language Translator',
+      domain: 'Deep Learning · NLP · Computer Vision',
       description:
-        'A real-time accessibility pipeline that captures continuous spoken audio, extracts high-fidelity linguistic phonemes via Whisper NLP, and renders fluid 3D sign-language skeletal representations with ultra-low latency for seamless deaf-mute communication.',
-      tech: ['Python', 'Speech Recognition', 'NLP', 'Computer Vision'],
+        'A real-time AI application that converts spoken language into sign-language sequences and generates corresponding 3D avatar animations to improve communication accessibility.',
+      tech: [
+        'Python',
+        'Deep Learning',
+        'NLP',
+        'Speech Recognition',
+        'WLASL',
+        'Transformers',
+        'Computer Vision',
+        '3D Avatar Animation',
+      ],
       image: '/images/project-sign.jpg',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: true,
+      isFlagship: false,
     },
     {
       num: '03',
-      titleMain: 'INSTAGRAM',
-      titleAccent: 'ai',
-      titleEnd: 'AUTOMATION PLATFORM',
+      title: 'AI Data Analyst Agent',
+      domain: 'Agentic AI · Data Science',
       description:
-        'An AI-powered social chat automation engine that instantly responds to customer direct messages, qualifies inbound enterprise leads, automates multi-turn conversations, and syncs seamlessly with CRM pipelines to skyrocket engagement.',
-      tech: ['React.js', 'FastAPI', 'LangChain', 'OpenAI', 'Redis'],
-      image: '/images/project-insta.jpg',
+        'An intelligent AI data analyst that processes datasets, understands natural-language questions, performs automated analysis, generates visualizations, and delivers actionable business insights.',
+      tech: [
+        'Python',
+        'LangGraph',
+        'LLMs',
+        'Pandas',
+        'NumPy',
+        'Scikit-learn',
+        'Text-to-SQL',
+        'FastAPI',
+        'PostgreSQL',
+      ],
+      image: '/images/project-data-analyst.svg',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: false,
+      isFlagship: false,
     },
     {
       num: '04',
-      titleMain: 'JARVIS',
-      titleAccent: 'ai',
-      titleEnd: 'DESKTOP ASSISTANT',
+      title: 'TubeNext – AI-Powered YouTube Analytics',
+      domain: 'AI Analytics · Machine Learning',
       description:
-        'A futuristic hands-free desktop voice assistant powered by local speech models and LLMs. Enables zero-touch OS control, automated multi-app execution, code generation, and intelligent system telemetry with high-precision natural language understanding.',
-      tech: ['Python', 'Whisper', 'Gemini API', 'System Automation'],
-      image: '/images/project-jarvis.svg',
+        'An AI-powered YouTube analytics platform that evaluates channel performance, analyzes video metrics, identifies growth opportunities, and provides intelligent recommendations for content creators.',
+      tech: [
+        'Python',
+        'Machine Learning',
+        'Data Analytics',
+        'YouTube Data API',
+        'LLMs',
+        'Data Visualization',
+      ],
+      image: '/images/project-tubenext.svg',
       demoUrl: 'https://github.com/Jeeva1117',
       githubUrl: 'https://github.com/Jeeva1117',
       reverse: true,
+      isFlagship: false,
+    },
+    {
+      num: '05',
+      title: 'AgroNext – AI-Powered Plant Disease Detection & Voice Assistant',
+      domain: 'AI · Machine Learning · Voice AI',
+      description:
+        'An intelligent agricultural AI assistant that detects plant diseases from leaf images, identifies potential infections, and provides relevant treatment recommendations. It also allows farmers to interact through voice.',
+      tech: [
+        'Python',
+        'Machine Learning',
+        'Deep Learning',
+        'CNN',
+        'Computer Vision',
+        'Image Classification',
+        'Speech Recognition',
+        'Text-to-Speech',
+        'NLP',
+        'FastAPI',
+      ],
+      image: '/images/project-agronext.svg',
+      demoUrl: 'https://github.com/Jeeva1117',
+      githubUrl: 'https://github.com/Jeeva1117',
+      reverse: false,
+      isFlagship: false,
     },
   ]
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Header animation
+      // Header entrance animation
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
@@ -86,7 +147,7 @@ export default function Projects() {
         )
       }
 
-      // Project row animations
+      // Smooth scroll-reveal for each project row
       projectRowsRef.current.forEach((row) => {
         if (!row) return
         const img = row.querySelector('.project-img-wrapper')
@@ -102,13 +163,13 @@ export default function Projects() {
 
         tl.fromTo(
           img,
-          { opacity: 0, y: 60 },
-          { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }
+          { opacity: 0, y: 60, scale: 0.98 },
+          { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: 'power3.out' }
         ).fromTo(
           content,
-          { opacity: 0, y: 40 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' },
-          '-=0.7'
+          { opacity: 0, y: 35 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
+          '-=0.8'
         )
       })
     }, sectionRef)
@@ -125,8 +186,12 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="relative w-full bg-[#050505] text-white px-6 md:px-16 pt-20 md:pt-32 pb-24 md:pb-36 overflow-hidden"
+      className="relative w-full bg-[#050505] text-white px-6 md:px-16 pt-24 md:pt-36 pb-28 md:pb-40 overflow-hidden"
     >
+      {/* Background ambient lighting accent */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-[#CCFF00]/[0.02] rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-0 w-[600px] h-[600px] bg-[#10b981]/[0.02] rounded-full blur-[160px] pointer-events-none" />
+
       <div className="max-w-[1440px] mx-auto">
         {/* Section Header: Two Columns */}
         <div
@@ -135,6 +200,9 @@ export default function Projects() {
         >
           {/* Left Giant Title */}
           <div>
+            <span className="block text-xs font-mono uppercase tracking-widest text-[#CCFF00] mb-3">
+              // ORIGINAL AI ARCHITECTURE &amp; SYSTEMS
+            </span>
             <h2
               className="tracking-tighter uppercase font-black"
               style={{
@@ -159,29 +227,33 @@ export default function Projects() {
           </div>
 
           {/* Right Editorial Description & Read More CTA */}
-          <div className="max-w-[420px] flex flex-col items-start md:items-end text-left md:text-right">
+          <div className="max-w-[440px] flex flex-col items-start md:items-end text-left md:text-right">
             <p className="text-sm md:text-base text-[#9CA3AF] font-light leading-relaxed mb-4">
-              As an AI Engineer using modern ideas, simplicity in design and universal visual identification tailored to dedicated and current market demands.
+              Production-ready artificial intelligence systems, multi-agent frameworks, computer-vision models, and deep-learning pipelines engineered for real-world impact.
             </p>
 
             <button
               onClick={handleReadMore}
               className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#CCFF00] hover:bg-[#b8e600] text-black transition-all duration-300 shadow-[0_0_20px_rgba(204,255,0,0.3)]"
             >
-              <span>Read More</span>
+              <span>Explore GitHub</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </button>
           </div>
         </div>
 
-        {/* Alternating Editorial Project List */}
-        <div className="mt-16 md:mt-24 space-y-28 md:space-y-40">
+        {/* 5 Original Projects Showcase */}
+        <div className="mt-20 md:mt-28 space-y-28 md:space-y-40">
           {projectsData.map((project, index) => {
             return (
               <div
                 key={project.num}
                 ref={(el) => (projectRowsRef.current[index] = el)}
-                className="group relative"
+                className={`group relative ${
+                  project.isFlagship
+                    ? 'p-6 sm:p-8 md:p-12 rounded-[28px] md:rounded-[36px] bg-white/[0.02] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.9)]'
+                    : ''
+                }`}
               >
                 {/* Desktop 2-Column Alternating Grid */}
                 <div
@@ -195,13 +267,27 @@ export default function Projects() {
                       project.reverse ? 'lg:col-start-6' : 'lg:col-start-1'
                     }`}
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[4px] bg-[#0c0c0e] border border-white/10 group-hover:border-white/30 transition-all duration-500 shadow-2xl">
-                      <img
-                        src={project.image}
-                        alt={`${project.titleMain} ${project.titleEnd}`}
-                        className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
+                    <div className="relative group/img overflow-hidden rounded-2xl md:rounded-[24px] bg-[#090b0e] border border-white/10 group-hover:border-white/30 transition-all duration-500 shadow-2xl">
+                      {/* Ambient Image Glow on Hover */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-[#CCFF00]/10 to-[#10b981]/10 rounded-2xl blur-xl opacity-0 group-hover/img:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                      <div className="relative aspect-[16/10] w-full overflow-hidden">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover opacity-90 group-hover/img:opacity-100 group-hover/img:scale-105 transition-all duration-700 ease-out"
+                        />
+                        {/* Subtle bottom vignette overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 pointer-events-none" />
+                      </div>
+
+                      {/* Flagship Tag Overlay on Visual if Flagship */}
+                      {project.isFlagship && (
+                        <div className="absolute top-4 left-4 py-1.5 px-3.5 rounded-full bg-black/80 backdrop-blur-md border border-[#CCFF00]/40 flex items-center gap-2 text-[11px] font-mono text-[#CCFF00] shadow-lg">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#CCFF00] animate-ping" />
+                          <span>FLAGSHIP AGENTIC SYSTEM</span>
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -211,37 +297,39 @@ export default function Projects() {
                       project.reverse ? 'lg:col-start-1 lg:row-start-1' : 'lg:col-start-8'
                     }`}
                   >
-                    {/* Project Number */}
-                    <div className="project-text-elem text-[#CCFF00] font-mono text-sm md:text-base font-bold uppercase tracking-widest mb-3">
-                      {project.num}
+                    {/* Domain Category Pill & Project Number */}
+                    <div className="project-text-elem flex items-center justify-between gap-4 mb-3">
+                      <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#CCFF00] bg-[#CCFF00]/10 px-3 py-1 rounded-full border border-[#CCFF00]/25">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#CCFF00]" />
+                        {project.domain}
+                      </span>
+                      <span className="text-[#CCFF00] font-mono text-xl md:text-2xl font-black tracking-widest">
+                        {project.num}
+                      </span>
                     </div>
 
-                    {/* Editorial Title */}
+                    {/* Project Title */}
                     <h3
-                      className="project-text-elem font-black tracking-tight uppercase text-white mb-4"
+                      className="project-text-elem font-black tracking-tight text-white mb-4"
                       style={{
-                        fontSize: 'clamp(1.8rem, 3.2vw, 3.6rem)',
-                        lineHeight: '1.05',
+                        fontSize: 'clamp(1.75rem, 2.6vw, 2.8rem)',
+                        lineHeight: '1.1',
                       }}
                     >
-                      {project.titleMain}{' '}
-                      <span className="editorial-serif font-light lowercase text-[#9CA3AF]">
-                        {project.titleAccent}
-                      </span>{' '}
-                      {project.titleEnd}
+                      {project.title}
                     </h3>
 
-                    {/* Project Description */}
-                    <p className="project-text-elem text-sm md:text-base text-[#9CA3AF] font-light leading-relaxed max-w-[500px] mb-6">
+                    {/* Exact Project Description */}
+                    <p className="project-text-elem text-sm md:text-base text-[#9CA3AF] font-light leading-relaxed max-w-[520px] mb-6">
                       {project.description}
                     </p>
 
-                    {/* Tech Tags */}
+                    {/* Technology Tags */}
                     <div className="project-text-elem flex flex-wrap gap-2 mb-8">
                       {project.tech.map((t, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-3 py-1 rounded-full text-xs font-mono bg-white/5 border border-white/10 text-white/80"
+                          className="px-3 py-1 rounded-full text-xs font-mono bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white/85 transition-colors"
                         >
                           {t}
                         </span>

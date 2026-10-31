@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" style="background:#050505">
+  <defs>
+    <radialGradient id="tnGlow" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#2a0808" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#140608" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="ytRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF0000"/>
+      <stop offset="100%" stop-color="#ff4444"/>
+    </linearGradient>
+    <linearGradient id="limeGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CCFF00"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="glowFiltRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#tnGlow)"/>
+
+  <!-- Subtle Perspective Grid -->
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="150" y1="0" x2="150" y2="1000"/>
+    <line x1="350" y1="0" x2="350" y2="1000"/>
+    <line x1="550" y1="0" x2="550" y2="1000"/>
+    <line x1="750" y1="0" x2="750" y2="1000"/>
+    <line x1="950" y1="0" x2="950" y2="1000"/>
+    <line x1="1150" y1="0" x2="1150" y2="1000"/>
+    <line x1="1350" y1="0" x2="1350" y2="1000"/>
+    <line x1="0" y1="200" x2="1600" y2="200"/>
+    <line x1="0" y1="400" x2="1600" y2="400"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="800" x2="1600" y2="800"/>
+  </g>
+
+  <!-- TubeNext Analytics Cockpit -->
+  <g transform="translate(140, 130)">
+    <!-- Main backdrop glass plate -->
+    <rect width="860" height="710" rx="18" fill="#0b0a0d" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.12"/>
+
+    <!-- Dashboard Header -->
+    <g transform="translate(40, 36)">
+      <!-- YouTube Style Play Icon with Lime Accent -->
+      <rect width="36" height="26" rx="6" fill="#FF0000" filter="url(#glowFiltRed)"/>
+      <polygon points="14,8 24,13 14,18" fill="#ffffff"/>
+      <text x="50" y="20" fill="#ffffff" font-family="'Space Grotesk', Inter, sans-serif" font-size="16" font-weight="900" letter-spacing="1">TUBENEXT</text>
+      <text x="148" y="20" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700">// AI ANALYTICS ENGINE</text>
+
+      <rect x="670" y="2" width="110" height="24" rx="12" fill="#CCFF00" fill-opacity="0.12" stroke="#CCFF00" stroke-opacity="0.3"/>
+      <text x="725" y="18" text-anchor="middle" fill="#CCFF00" font-family="Inter, sans-serif" font-size="10" font-weight="700">API CONNECTED</text>
+    </g>
+    <line x1="40" y1="78" x2="820" y2="78" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <!-- 4 High Level Metric Dials -->
+    <g transform="translate(40, 100)">
+      <!-- Stat 1 -->
+      <rect width="180" height="96" rx="10" fill="#131117" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="18" y="30" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" font-weight="600">PREDICTIVE VIEWS (30D)</text>
+      <text x="18" y="64" fill="#ffffff" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="800">1.84M</text>
+      <text x="18" y="84" fill="#CCFF00" font-family="Inter, sans-serif" font-size="11" font-weight="700">↑ +38.4% vs Baseline</text>
+
+      <!-- Stat 2 -->
+      <rect x="196" width="180" height="96" rx="10" fill="#131117" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="214" y="30" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" font-weight="600">AVG AUDIENCE RETENTION</text>
+      <text x="214" y="64" fill="#ffffff" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="800">74.2%</text>
+      <text x="214" y="84" fill="#CCFF00" font-family="Inter, sans-serif" font-size="11" font-weight="700">Optimal Hook Duration</text>
+
+      <!-- Stat 3 -->
+      <rect x="392" width="180" height="96" rx="10" fill="#131117" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="410" y="30" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" font-weight="600">CTR OPTIMIZATION</text>
+      <text x="410" y="64" fill="#ffffff" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="800">12.8%</text>
+      <text x="410" y="84" fill="#10b981" font-family="Inter, sans-serif" font-size="11" font-weight="700">Top 5% in Niche</text>
+
+      <!-- Stat 4 -->
+      <rect x="588" width="192" height="96" rx="10" fill="#131117" stroke="#ffffff" stroke-opacity="0.08"/>
+      <text x="606" y="30" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" font-weight="600">AI OPPORTUNITY SCORE</text>
+      <text x="606" y="64" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="24" font-weight="800">96 / 100</text>
+      <text x="606" y="84" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">Growth Breakout Imminent</text>
+    </g>
+
+    <!-- Main Chart: Video Performance Velocity Curve -->
+    <g transform="translate(40, 220)">
+      <rect width="780" height="450" rx="12" fill="#0d0c11" stroke="#ffffff" stroke-opacity="0.06"/>
+      <text x="28" y="36" fill="#ffffff" font-family="Inter, sans-serif" font-size="14" font-weight="700">Audience Retention Curve vs Algorithmic Velocity</text>
+      <text x="28" y="56" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">ML Feature Extraction: High-drop timestamps highlighted</text>
+
+      <!-- Grid lines -->
+      <g stroke="#ffffff" stroke-opacity="0.06" stroke-width="1">
+        <line x1="60" y1="120" x2="720" y2="120"/>
+        <line x1="60" y1="200" x2="720" y2="200"/>
+        <line x1="60" y1="280" x2="720" y2="280"/>
+        <line x1="60" y1="360" x2="720" y2="360"/>
+      </g>
+
+      <!-- Fill area under curve -->
+      <path d="M 60 160 C 140 130, 240 110, 360 180 S 520 220, 640 140 L 720 120 L 720 380 L 60 380 Z" fill="#CCFF00" fill-opacity="0.08"/>
+
+      <!-- Retention Curve Line -->
+      <path d="M 60 160 C 140 130, 240 110, 360 180 S 520 220, 640 140 L 720 120" fill="none" stroke="#CCFF00" stroke-width="3.5" filter="url(#glowFiltRed)"/>
+
+      <!-- Second Comparison Line (Average) -->
+      <path d="M 60 220 C 140 240, 240 270, 360 290 S 520 310, 640 330 L 720 340" fill="none" stroke="#FF0000" stroke-width="2" stroke-dasharray="6 6" opacity="0.7"/>
+
+      <!-- Marker Points on Curve -->
+      <circle cx="160" cy="132" r="5" fill="#ffffff"/>
+      <circle cx="360" cy="180" r="5" fill="#CCFF00"/>
+      <circle cx="560" cy="180" r="5" fill="#ffffff"/>
+      <circle cx="700" cy="122" r="6" fill="#CCFF00" filter="url(#glowFiltRed)"/>
+
+      <!-- Callout Tooltip at inflection peak -->
+      <g transform="translate(480, 70)">
+        <rect width="180" height="52" rx="8" fill="#1a1820" stroke="#CCFF00" stroke-opacity="0.5"/>
+        <text x="14" y="22" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="10" font-weight="700">AI VIRAL HOOK DETECTED</text>
+        <text x="14" y="38" fill="#ffffff" font-family="Inter, sans-serif" font-size="11">Rewatch Rate +142%</text>
+      </g>
+
+      <!-- X-axis timestamps -->
+      <text x="60" y="405" fill="#71717a" font-family="monospace" font-size="10">0:00 [Intro]</text>
+      <text x="220" y="405" fill="#71717a" font-family="monospace" font-size="10">2:15 [Concept]</text>
+      <text x="390" y="405" fill="#71717a" font-family="monospace" font-size="10">5:40 [Breakdown]</text>
+      <text x="560" y="405" fill="#71717a" font-family="monospace" font-size="10">8:20 [Climax]</text>
+      <text x="700" y="405" fill="#71717a" font-family="monospace" font-size="10">10:00 [CTA]</text>
+    </g>
+  </g>
+
+  <!-- Right Side AI Insights Panel -->
+  <g transform="translate(1030, 160)">
+    <rect width="420" height="650" rx="16" fill="#0c0b10" fill-opacity="0.9" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="32" y="48" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">INTELLIGENT RECOMMENDATIONS</text>
+    <line x1="32" y1="66" x2="388" y2="66" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <!-- Recommendation Item 1 -->
+    <g transform="translate(32, 88)">
+      <rect width="356" height="110" rx="10" fill="#14121a" stroke="#ffffff" stroke-opacity="0.06"/>
+      <rect x="16" y="16" width="60" height="20" rx="4" fill="#CCFF00" fill-opacity="0.15"/>
+      <text x="46" y="30" text-anchor="middle" fill="#CCFF00" font-family="monospace" font-size="9" font-weight="700">CTR BOOST</text>
+      <text x="86" y="30" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" font-weight="700">Thumbnail Optimization</text>
+      <text x="16" y="58" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11" width="324">Shift high-contrast subject to rule-of-thirds left; increase facial emotion vibrancy by 24%.</text>
+      <text x="16" y="92" fill="#10b981" font-family="monospace" font-size="10">+2.4% Projected Click-Through Rate</text>
+    </g>
+
+    <!-- Recommendation Item 2 -->
+    <g transform="translate(32, 216)">
+      <rect width="356" height="110" rx="10" fill="#14121a" stroke="#ffffff" stroke-opacity="0.06"/>
+      <rect x="16" y="16" width="70" height="20" rx="4" fill="#FF0000" fill-opacity="0.15"/>
+      <text x="51" y="30" text-anchor="middle" fill="#ff4444" font-family="monospace" font-size="9" font-weight="700">RETENTION</text>
+      <text x="96" y="30" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" font-weight="700">Pacing Rebalance at 03:14</text>
+      <text x="16" y="58" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="11">Eliminate 12-second static b-roll pause; insert B-roll transition or kinetic typography.</text>
+      <text x="16" y="92" fill="#CCFF00" font-family="monospace" font-size="10">Prevents 8.2% Viewer Dropoff</text>
+    </g>
+
+    <!-- Recommendation Item 3: Title Generation -->
+    <g transform="translate(32, 344)">
+      <rect width="356" height="140" rx="10" fill="#14121a" stroke="#ffffff" stroke-opacity="0.06"/>
+      <rect x="16" y="16" width="60" height="20" rx="4" fill="#06b6d4" fill-opacity="0.15"/>
+      <text x="46" y="30" text-anchor="middle" fill="#06b6d4" font-family="monospace" font-size="9" font-weight="700">SEO / LLM</text>
+      <text x="86" y="30" fill="#ffffff" font-family="Inter, sans-serif" font-size="12" font-weight="700">AI Title Variations</text>
+      <text x="16" y="58" fill="#ffffff" font-family="monospace" font-size="11">1. "I Built a Self-Healing AI Agent in 24 Hours"</text>
+      <text x="16" y="78" fill="#9CA3AF" font-family="monospace" font-size="11">2. "Why Traditional RAG is Failing (And How to Fix It)"</text>
+      <text x="16" y="98" fill="#9CA3AF" font-family="monospace" font-size="11">3. "The AI Engineer Stack of 2026 Revealed"</text>
+      <text x="16" y="122" fill="#CCFF00" font-family="monospace" font-size="10">> Highest Search Volume: Option 1</text>
+    </g>
+
+    <!-- Model Status Footer -->
+    <g transform="translate(32, 504)">
+      <rect width="356" height="54" rx="8" fill="#CCFF00" fill-opacity="0.1" stroke="#CCFF00" stroke-opacity="0.3"/>
+      <text x="178" y="32" text-anchor="middle" fill="#CCFF00" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="700">YOUTUBE V3 API PIPELINE: ACTIVE</text>
+    </g>
+  </g>
+</svg>
