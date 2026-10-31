@@ -126,15 +126,9 @@ export default function Hero({ onPreloadComplete }) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-end justify-center bg-cover bg-center bg-no-repeat overflow-hidden select-none"
-      style={{
-        background: 'radial-gradient(circle at 50% 50%, #1e1e1e 0%, #050505 75%, #000000 100%)',
-      }}
+      className="relative min-h-screen flex items-end justify-center bg-[#000000] overflow-hidden select-none"
     >
-      {/* Subtle backdrop overlay and anti-grain blur */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
-
-      {/* Layer 1: Balanced Metallic Title & Attached Controls (Behind Portrait) */}
+      {/* Layer 1: Metallic Title & Attached Controls (Positioned Behind Portrait) */}
       <div
         ref={titleContainerRef}
         className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none flex flex-col items-start w-max will-change-transform"
@@ -205,16 +199,22 @@ export default function Hero({ onPreloadComplete }) {
         </div>
       </div>
 
-      {/* Layer 2: Authentic Professional Portrait (Positioned in Front of PORTFOLIO Typography) */}
+      {/* Layer 2: Authentic Professional Portrait Cutout (Positioned in Front of PORTFOLIO Typography) */}
       <div
         ref={personRef}
         className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none translate-y-[100vh] will-change-transform"
       >
-        <div className="relative w-full max-w-[320px] sm:max-w-[380px] md:max-w-[440px] lg:max-w-[480px] flex items-end justify-center">
+        <div
+          className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px] xl:max-w-[600px] flex items-end justify-center"
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
+          }}
+        >
           <img
             src="/images/portrait-hero.png"
             alt="Jeevanantham A — AI Engineer"
-            className="w-full h-auto object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
+            className="w-full h-auto object-contain object-bottom"
           />
         </div>
       </div>
