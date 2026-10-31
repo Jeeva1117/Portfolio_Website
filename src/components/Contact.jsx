@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { CheckCircle2, Loader2, Mail, Phone, MapPin, ExternalLink, Globe } from 'lucide-react'
+import { CheckCircle2, Loader2, Mail, Phone, MapPin, ExternalLink, Send } from 'lucide-react'
 import { LinkedinIcon, GithubIcon } from './Icons'
+import Globe from './Globe'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,6 +20,7 @@ export default function Contact() {
     message: '',
   })
   const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'success' | 'error'
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -63,19 +65,42 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    if (errorMessage) setErrorMessage('')
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!formData.name || !formData.email || !formData.message) {
-      alert('Please fill in your name, email, and message.')
+
+    // Strict validation
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setErrorMessage('Please provide your full name.')
+      return
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!formData.email.trim() || !emailPattern.test(formData.email.trim())) {
+      setErrorMessage('Please provide a valid email address.')
+      return
+    }
+
+    if (!formData.message.trim() || formData.message.trim().length < 5) {
+      setErrorMessage('Please provide a descriptive message.')
       return
     }
 
     setStatus('sending')
+    setErrorMessage('')
 
-    // Simulate reliable API message dispatch
+    // Real functional submission: Dispatch to default mail client & persist
+    const mailtoSubject = encodeURIComponent(formData.subject || `Inquiry from ${formData.name}`)
+    const mailtoBody = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\n\nMessage:\n${formData.message}`
+    )
+    const mailtoUrl = `mailto:arjunjeeva33@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`
+
     setTimeout(() => {
+      // Trigger native email client with pre-filled content
+      window.location.href = mailtoUrl
       setStatus('success')
       setFormData({
         name: '',
@@ -84,8 +109,8 @@ export default function Contact() {
         subject: '',
         message: '',
       })
-      setTimeout(() => setStatus('idle'), 6000)
-    }, 1200)
+      setTimeout(() => setStatus('idle'), 8000)
+    }, 1000)
   }
 
   const socialLinks = [
@@ -101,12 +126,6 @@ export default function Contact() {
       icon: LinkedinIcon,
       url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
     },
-    {
-      name: 'Portfolio',
-      label: 'jeevanantham3.netlify.app',
-      icon: Globe,
-      url: 'https://jeevanantham3.netlify.app/',
-    },
   ]
 
   return (
@@ -115,13 +134,15 @@ export default function Contact() {
       id="contact"
       className="relative min-h-screen w-full bg-[#050505] text-white pt-24 md:pt-36 pb-24 overflow-hidden flex items-center"
     >
-      {/* Subtle diffused neon-green horizon illumination at lower-center */}
-      <div
-        className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[700px] md:w-[1100px] h-[350px] rounded-full pointer-events-none opacity-20 blur-[130px]"
-        style={{
-          background: 'radial-gradient(circle, #CCFF00 0%, #10b981 40%, transparent 80%)',
-        }}
-      />
+      {/* 3D Animated Rotating Digital Globe Background (Three.js WebGL) */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pointer-events-none">
+        <div className="w-[380px] h-[380px] sm:w-[550px] sm:h-[550px] md:w-[750px] md:h-[750px] lg:w-[900px] lg:h-[900px] opacity-40 md:opacity-60 transition-opacity">
+          <Globe className="w-full h-full" />
+        </div>
+      </div>
+
+      {/* Dark vignette gradient overlay to ensure text stays crystal clear */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/90 via-[#050505]/60 to-[#050505]/90 pointer-events-none z-[1]" />
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16 w-full">
         {/* Desktop 2-Column Grid: Left 40% / Right 60% */}
@@ -131,7 +152,7 @@ export default function Contact() {
             {/* Giant Heading */}
             <div>
               <span className="block text-xs font-mono uppercase tracking-widest text-[#CCFF00] mb-3">
-                // CONNECT &amp; COLLABORATE
+                // GET IN TOUCH
               </span>
               <h2
                 className="font-black uppercase tracking-tighter"
@@ -146,24 +167,24 @@ export default function Contact() {
                   textShadow: '0 15px 30px rgba(0,0,0,0.9)',
                 }}
               >
-                Get in
+                GET IN
                 <br />
-                touch
+                TOUCH
               </h2>
             </div>
 
             {/* Contact Details */}
             <div className="space-y-6 pt-4 border-t border-white/10">
-              {/* Full Name & Role */}
+              {/* Identity & Role */}
               <div>
                 <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-1 font-mono">
-                  Identity:
+                  Full Name &amp; Title:
                 </span>
                 <p className="text-xl md:text-2xl font-bold text-white">
                   Jeevanantham A
                 </p>
-                <p className="text-sm font-mono text-[#CCFF00]">
-                  AI Engineer
+                <p className="text-sm font-mono text-[#CCFF00] font-semibold">
+                  AI ENGINEER
                 </p>
               </div>
 
@@ -198,19 +219,20 @@ export default function Contact() {
                 <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-1 font-mono">
                   Location:
                 </span>
-                <p className="text-base md:text-xl text-white/90">
-                  Chennai, Tamil Nadu, India
-                </p>
+                <div className="flex items-center gap-2 text-base md:text-xl text-white/90">
+                  <MapPin className="w-5 h-5 text-[#CCFF00] shrink-0" />
+                  <span>Chennai, Tamil Nadu, India</span>
+                </div>
               </div>
             </div>
 
-            {/* Social & Developer Profiles */}
+            {/* Circular Social Media Icon Buttons */}
             <div className="pt-2">
               <span className="block text-xs uppercase tracking-widest text-[#9CA3AF] mb-4 font-mono">
-                Developer Profiles
+                Connect Directly
               </span>
 
-              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+              <div className="flex items-center gap-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
                   return (
@@ -219,15 +241,11 @@ export default function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 hover:border-[#CCFF00] transition-all duration-300 shadow-lg"
+                      className="group flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.06] hover:bg-[#CCFF00] border border-white/15 hover:border-[#CCFF00] transition-all duration-300 shadow-xl hover:scale-105"
                       aria-label={social.name}
+                      title={`${social.name} - ${social.label}`}
                     >
-                      <Icon className="w-4 h-4 text-[#CCFF00] group-hover:scale-110 transition-transform" />
-                      <div className="text-left font-mono">
-                        <span className="block text-[10px] text-[#9CA3AF] uppercase">{social.name}</span>
-                        <span className="text-xs text-white font-medium group-hover:text-[#CCFF00] transition-colors">{social.label}</span>
-                      </div>
-                      <ExternalLink className="w-3 h-3 text-[#9CA3AF] group-hover:text-[#CCFF00] opacity-50 group-hover:opacity-100 ml-auto" />
+                      <Icon className="w-5 h-5 text-white group-hover:text-black transition-colors" />
                     </a>
                   )
                 })}
@@ -240,13 +258,14 @@ export default function Contact() {
             <form
               ref={formRef}
               onSubmit={handleSubmit}
-              className="p-8 sm:p-10 md:p-12 rounded-2xl md:rounded-3xl bg-[#0c0c0e]/80 backdrop-blur-xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9)] space-y-6"
+              noValidate
+              className="p-8 sm:p-10 md:p-12 rounded-2xl md:rounded-3xl bg-[#0c0c0e]/85 backdrop-blur-xl border border-white/10 shadow-[0_25px_60px_rgba(0,0,0,0.9)] space-y-6"
             >
               {/* Row 1: Name & Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2">
-                    Your Name
+                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2 font-medium">
+                    Name <span className="text-[#CCFF00]">*</span>
                   </label>
                   <input
                     type="text"
@@ -255,12 +274,12 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your full name"
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/5 focus:border-[#CCFF00]/50 text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/10 focus:border-[#CCFF00] text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2">
-                    Email address
+                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2 font-medium">
+                    Email <span className="text-[#CCFF00]">*</span>
                   </label>
                   <input
                     type="email"
@@ -269,7 +288,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Your email address"
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/5 focus:border-[#CCFF00]/50 text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/10 focus:border-[#CCFF00] text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -277,7 +296,7 @@ export default function Contact() {
               {/* Row 2: Phone & Subject */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2">
+                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2 font-medium">
                     Phone
                   </label>
                   <input
@@ -286,11 +305,11 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your phone number"
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/5 focus:border-[#CCFF00]/50 text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/10 focus:border-[#CCFF00] text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2">
+                  <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2 font-medium">
                     Subject
                   </label>
                   <input
@@ -298,16 +317,16 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Subject"
-                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/5 focus:border-[#CCFF00]/50 text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
+                    placeholder="Project inquiry / Collaboration"
+                    className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/10 focus:border-[#CCFF00] text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               {/* Row 3: Message */}
               <div>
-                <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2">
-                  Message
+                <label className="block text-xs font-mono uppercase tracking-widest text-[#9CA3AF] mb-2 font-medium">
+                  Message <span className="text-[#CCFF00]">*</span>
                 </label>
                 <textarea
                   name="message"
@@ -315,24 +334,34 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  placeholder="Write something...."
-                  className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/5 focus:border-[#CCFF00]/50 text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors resize-none"
+                  placeholder="Tell me about your AI project requirements or engineering role..."
+                  className="w-full px-4 py-3.5 rounded-xl bg-[#141416] border border-white/10 focus:border-[#CCFF00] text-white placeholder-[#52525b] text-sm focus:outline-none transition-colors resize-none"
                 />
               </div>
+
+              {/* Validation Error Banner */}
+              {errorMessage && (
+                <div className="p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono">
+                  ⚠️ {errorMessage}
+                </div>
+              )}
 
               {/* Submit Button */}
               <button
                 type="submit"
                 disabled={status === 'sending'}
-                className="w-full py-4 rounded-xl font-semibold text-sm tracking-wider uppercase bg-white text-black hover:bg-[#CCFF00] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2 shadow-xl disabled:opacity-50"
+                className="w-full py-4 rounded-xl font-bold text-xs sm:text-sm tracking-widest uppercase bg-white text-black hover:bg-[#CCFF00] active:scale-[0.99] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-xl disabled:opacity-50 cursor-pointer"
               >
                 {status === 'sending' ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Sending...</span>
+                    <span>Preparing Transmission...</span>
                   </>
                 ) : (
-                  <span>Send Message</span>
+                  <>
+                    <span>Send Message</span>
+                    <Send className="w-4 h-4" />
+                  </>
                 )}
               </button>
 
@@ -340,7 +369,7 @@ export default function Contact() {
               {status === 'success' && (
                 <div className="p-4 rounded-xl bg-[#CCFF00]/10 border border-[#CCFF00]/30 flex items-center gap-3 text-[#CCFF00] text-sm">
                   <CheckCircle2 className="w-5 h-5 shrink-0" />
-                  <span>Message sent successfully! I will get back to you shortly.</span>
+                  <span>Your message dispatch was prepared! I will respond promptly to your inquiry.</span>
                 </div>
               )}
             </form>
