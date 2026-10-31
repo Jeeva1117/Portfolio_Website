@@ -16,8 +16,12 @@ export default function Hero() {
   // Preload hero image
   useEffect(() => {
     const img = new Image()
-    img.src = '/images/portrait-hero.jpg'
+    img.src = '/images/portrait-hero.png'
     img.onload = () => {
+      setImageLoaded(true)
+    }
+    // Fallback if already cached
+    if (img.complete) {
       setImageLoaded(true)
     }
   }, [])
@@ -172,12 +176,9 @@ export default function Hero() {
           <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10" />
 
           <img
-            src="/images/portrait-hero.jpg"
-            alt="Jeevanantham A — AI Engineer"
-            className="w-[320px] sm:w-[420px] md:w-[520px] lg:w-[620px] max-h-[85vh] object-contain object-bottom drop-shadow-[0_20px_50px_rgba(0,0,0,0.95)]"
-            style={{
-              mixBlendMode: 'lighten', // Seamlessly eliminates dark background pixels for true cutout layering over text!
-            }}
+            src="/images/portrait-hero.png"
+            alt="Jeevanantham A (LEESHARK) — AI Full Stack Developer"
+            className="w-[340px] sm:w-[440px] md:w-[540px] lg:w-[620px] max-h-[84vh] object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)]"
           />
         </div>
       </div>
@@ -238,3 +239,4 @@ export default function Hero() {
     </section>
   )
 }
+
