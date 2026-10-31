@@ -2,7 +2,7 @@
 
 A premium, cinematic developer portfolio website built with **React 19**, **Tailwind CSS 3**, and **GSAP 3.12**.
 
-> "I'm Jeevanantham, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications."
+> "I'm Jeevanantham A, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications."
 
 ---
 

@@ -185,7 +185,7 @@ export default function Footer() {
 
         {/* Bottom Section: Copyright & Legal */}
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-[#71717a]">
-          <p>© {currentYear} Jeevanantham. All Rights Reserved.</p>
+          <p>© {currentYear} JEEVANANTHAM A. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
             <a
               href="https://jeevanantham3.netlify.app/"

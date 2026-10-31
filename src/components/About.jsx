@@ -13,12 +13,13 @@ export default function About() {
   const textWordsRef = useRef([])
 
   // Exact requested introduction quote
-  const paragraphText = `I'm Jeevanantham, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications.`
+  const paragraphText = `I'm Jeevanantham A, an AI Engineer passionate about building intelligent applications using Artificial Intelligence, Machine Learning, Generative AI, and Agentic AI. I enjoy developing practical AI solutions, intelligent agents, RAG systems, and real-world automation applications.`
 
   const words = paragraphText.split(' ')
 
   const highlightedWords = [
-    'Jeevanantham,',
+    'Jeevanantham',
+    'A,',
     'AI',
     'Engineer',
     'Artificial',
