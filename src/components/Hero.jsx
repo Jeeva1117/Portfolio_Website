@@ -199,18 +199,12 @@ export default function Hero({ onPreloadComplete }) {
         </div>
       </div>
 
-      {/* Layer 2: Authentic Professional Portrait Cutout (Positioned in Front of PORTFOLIO Typography) */}
+      {/* Layer 2: Authentic Professional Portrait (Positioned in Front of PORTFOLIO Typography) */}
       <div
         ref={personRef}
         className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none translate-y-[100vh] will-change-transform"
       >
-        <div
-          className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px] xl:max-w-[600px] flex items-end justify-center"
-          style={{
-            maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)',
-          }}
-        >
+        <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-[500px] lg:max-w-[560px] xl:max-w-[600px] flex items-end justify-center">
           <img
             src="/images/portrait-hero.png"
             alt="Jeevanantham A — AI Engineer"

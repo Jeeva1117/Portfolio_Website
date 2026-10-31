@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowUpRight, Menu, X, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 
 export default function Navbar() {
   const [visible, setVisible] = useState(true)
@@ -80,16 +80,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right CTA Actions */}
+        {/* Right CTA Actions: LET'S TALK */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="https://jeevanantham3.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-mono tracking-wider bg-white/[0.04] hover:bg-white/[0.1] text-white/80 hover:text-[#CCFF00] border border-white/15 transition-all duration-300 shadow-sm"
+            href="#contact"
+            onClick={(e) => handleLinkClick(e, '#contact')}
+            className="group flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#CCFF00] hover:bg-[#b8e600] text-black transition-all duration-300 shadow-[0_0_15px_rgba(204,255,0,0.25)] cursor-pointer"
           >
-            <span>Live Portfolio</span>
-            <ExternalLink className="w-3 h-3 text-[#CCFF00]" />
+            <span>Let's Talk</span>
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
 
@@ -129,13 +128,12 @@ export default function Navbar() {
           ))}
 
           <a
-            href="https://jeevanantham3.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 mt-4 px-6 py-2.5 rounded-full text-sm font-mono tracking-wider bg-white/10 text-[#CCFF00] border border-[#CCFF00]/40"
+            href="#contact"
+            onClick={(e) => handleLinkClick(e, '#contact')}
+            className="flex items-center justify-center gap-2 mt-4 px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#CCFF00] text-black transition-all cursor-pointer"
           >
-            <span>Live Portfolio</span>
-            <ExternalLink className="w-4 h-4 text-[#CCFF00]" />
+            <span>Let's Talk</span>
+            <ArrowUpRight className="w-4 h-4" />
           </a>
         </div>
       </div>
