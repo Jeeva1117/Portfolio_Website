@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" style="background:#050505">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#0a2a12" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#031408" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="1"/>
+    </radialGradient>
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#CCFF00" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#10b981" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050505" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CCFF00"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Dark ambient backdrop -->
+  <rect width="1600" height="1000" fill="url(#bgGlow)"/>
+
+  <!-- Subtle grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="200" y1="0" x2="200" y2="1000"/>
+    <line x1="400" y1="0" x2="400" y2="1000"/>
+    <line x1="600" y1="0" x2="600" y2="1000"/>
+    <line x1="800" y1="0" x2="800" y2="1000"/>
+    <line x1="1000" y1="0" x2="1000" y2="1000"/>
+    <line x1="1200" y1="0" x2="1200" y2="1000"/>
+    <line x1="1400" y1="0" x2="1400" y2="1000"/>
+    <line x1="0" y1="200" x2="1600" y2="200"/>
+    <line x1="0" y1="400" x2="1600" y2="400"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="800" x2="1600" y2="800"/>
+  </g>
+
+  <!-- Central HUD Circles & Rings -->
+  <g transform="translate(800, 500)">
+    <!-- Core glow -->
+    <circle r="320" fill="url(#coreGlow)" opacity="0.6"/>
+
+    <!-- Concentric tech rings -->
+    <circle r="340" fill="none" stroke="#CCFF00" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="6 8"/>
+    <circle r="300" fill="none" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5"/>
+    <circle r="260" fill="none" stroke="#CCFF00" stroke-opacity="0.4" stroke-width="2" stroke-dasharray="140 40 80 30"/>
+    <circle r="220" fill="none" stroke="#ffffff" stroke-opacity="0.2" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle r="180" fill="none" stroke="#CCFF00" stroke-opacity="0.6" stroke-width="2.5" stroke-dasharray="80 20 20 20" filter="url(#glowFilter)"/>
+    <circle r="120" fill="none" stroke="#10b981" stroke-opacity="0.7" stroke-width="2"/>
+    <circle r="60" fill="#CCFF00" fill-opacity="0.1" stroke="#CCFF00" stroke-width="2" filter="url(#glowFilter)"/>
+    
+    <!-- Central pulse indicator -->
+    <circle r="18" fill="#CCFF00" filter="url(#glowFilter)"/>
+
+    <!-- Dynamic orbital arcs -->
+    <path d="M -240 0 A 240 240 0 0 1 0 -240" fill="none" stroke="#CCFF00" stroke-width="4" stroke-linecap="round" filter="url(#glowFilter)"/>
+    <path d="M 240 0 A 240 240 0 0 1 0 240" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Radar sweep rays -->
+    <line x1="0" y1="0" x2="180" y2="-180" stroke="#CCFF00" stroke-opacity="0.6" stroke-width="1.5"/>
+    <circle cx="180" cy="-180" r="4" fill="#CCFF00"/>
+    
+    <line x1="0" y1="0" x2="-210" y2="120" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.5"/>
+    <circle cx="-210" cy="120" r="4" fill="#10b981"/>
+
+    <!-- Waveform in center -->
+    <path d="M -150 0 Q -110 -40 -80 0 T -20 0 T 40 -50 T 90 30 T 150 0" fill="none" stroke="#CCFF00" stroke-width="3" stroke-linecap="round" filter="url(#glowFilter)"/>
+  </g>
+
+  <!-- Left Telemetry Panel -->
+  <g transform="translate(100, 140)">
+    <rect width="360" height="380" rx="12" fill="#0c0e12" fill-opacity="0.8" stroke="#ffffff" stroke-opacity="0.1"/>
+    
+    <text x="24" y="40" fill="#CCFF00" font-family="'Space Grotesk', Inter, sans-serif" font-size="12" font-weight="700" letter-spacing="2">JARVIS CORE // v4.2-ACTIVE</text>
+    <line x1="24" y1="56" x2="336" y2="56" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <text x="24" y="90" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="13">SPEECH ENGINE:</text>
+    <text x="336" y="90" text-anchor="end" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="600">WHISPER-PRO [ONLINE]</text>
+
+    <text x="24" y="125" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="13">LLM REASONING:</text>
+    <text x="336" y="125" text-anchor="end" fill="#ffffff" font-family="Inter, sans-serif" font-size="13" font-weight="600">GEMINI-2.5-FLASH</text>
+
+    <text x="24" y="160" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="13">RESPONSE LATENCY:</text>
+    <text x="336" y="160" text-anchor="end" fill="#CCFF00" font-family="Inter, sans-serif" font-size="13" font-weight="700">142ms</text>
+
+    <text x="24" y="195" fill="#9CA3AF" font-family="Inter, sans-serif" font-size="13">SYS AUTOMATION:</text>
+    <text x="336" y="195" text-anchor="end" fill="#10b981" font-family="Inter, sans-serif" font-size="13" font-weight="600">OS LEVEL / ROOT</text>
+
+    <!-- Visual audio equalizer meters -->
+    <g transform="translate(24, 230)">
+      <rect x="0" y="30" width="8" height="60" rx="3" fill="#CCFF00"/>
+      <rect x="16" y="10" width="8" height="80" rx="3" fill="#CCFF00"/>
+      <rect x="32" y="25" width="8" height="65" rx="3" fill="#CCFF00"/>
+      <rect x="48" y="0" width="8" height="90" rx="3" fill="#CCFF00"/>
+      <rect x="64" y="20" width="8" height="70" rx="3" fill="#CCFF00"/>
+      <rect x="80" y="40" width="8" height="50" rx="3" fill="#CCFF00"/>
+      <rect x="96" y="15" width="8" height="75" rx="3" fill="#CCFF00"/>
+      <rect x="112" y="35" width="8" height="55" rx="3" fill="#10b981"/>
+      <rect x="128" y="20" width="8" height="70" rx="3" fill="#10b981"/>
+      <rect x="144" y="45" width="8" height="45" rx="3" fill="#10b981"/>
+      <rect x="160" y="10" width="8" height="80" rx="3" fill="#10b981"/>
+      <rect x="176" y="30" width="8" height="60" rx="3" fill="#10b981"/>
+      <rect x="192" y="50" width="8" height="40" rx="3" fill="#10b981"/>
+      <rect x="208" y="25" width="8" height="65" rx="3" fill="#10b981"/>
+      <rect x="224" y="5" width="8" height="85" rx="3" fill="#CCFF00"/>
+      <rect x="240" y="20" width="8" height="70" rx="3" fill="#CCFF00"/>
+      <rect x="256" y="40" width="8" height="50" rx="3" fill="#CCFF00"/>
+      <rect x="272" y="15" width="8" height="75" rx="3" fill="#CCFF00"/>
+      <rect x="288" y="30" width="8" height="60" rx="3" fill="#CCFF00"/>
+      <rect x="304" y="48" width="8" height="42" rx="3" fill="#CCFF00"/>
+    </g>
+
+    <text x="24" y="350" fill="#71717a" font-family="monospace" font-size="11">> LISTENING FOR VOICE TRIGGER "HEY JEEVA"...</text>
+  </g>
+
+  <!-- Right Command Stream Panel -->
+  <g transform="translate(1140, 480)">
+    <rect width="360" height="380" rx="12" fill="#0c0e12" fill-opacity="0.8" stroke="#ffffff" stroke-opacity="0.1"/>
+    
+    <text x="24" y="40" fill="#CCFF00" font-family="'Space Grotesk', Inter, sans-serif" font-size="12" font-weight="700" letter-spacing="2">EXECUTION LOGS // REALTIME</text>
+    <line x1="24" y1="56" x2="336" y2="56" stroke="#ffffff" stroke-opacity="0.08"/>
+
+    <g font-family="monospace" font-size="12" line-height="1.6">
+      <text x="24" y="90" fill="#10b981">[00:12:44] Voice Command Captured</text>
+      <text x="24" y="112" fill="#e4e4e7">"Deploy RAG model to production cluster"</text>
+
+      <text x="24" y="148" fill="#9CA3AF">[00:12:45] NLP Intent: DEPLOY_SERVICE</text>
+      <text x="24" y="170" fill="#CCFF00">[00:12:45] Target: Docker Swarm / Port 8000</text>
+
+      <text x="24" y="206" fill="#10b981">[00:12:46] Running healthcheck probe...</text>
+      <text x="24" y="228" fill="#ffffff">[00:12:47] Container: 12.8GB RAM | 4 GPU cores</text>
+
+      <text x="24" y="264" fill="#CCFF00">[00:12:48] Status: 200 OK | Latency: 48ms</text>
+      <text x="24" y="300" fill="#71717a">> Jarvis: "Deployment verified. All tests passed."</text>
+    </g>
+
+    <rect x="24" y="325" width="312" height="34" rx="6" fill="#CCFF00" fill-opacity="0.1" stroke="#CCFF00" stroke-opacity="0.3"/>
+    <text x="180" y="347" text-anchor="middle" fill="#CCFF00" font-family="Inter, sans-serif" font-size="12" font-weight="600" letter-spacing="1">SYSTEM READY &amp; OPERATIONAL</text>
+  </g>
+
+  <!-- Bottom Widescreen Accent Wave -->
+  <path d="M 0 920 Q 400 860 800 890 T 1600 880 L 1600 1000 L 0 1000 Z" fill="#000000" fill-opacity="0.7"/>
+</svg>
