@@ -259,3 +259,4 @@ export default function Globe({ className = "w-full h-full" }) {
     />
   )
 }
+

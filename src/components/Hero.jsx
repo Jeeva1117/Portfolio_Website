@@ -2,128 +2,118 @@ import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ArrowUpRight } from 'lucide-react'
 
-export default function Hero() {
+export default function Hero({ onPreloadComplete }) {
   const [displayText, setDisplayText] = useState('JEEVANANTHAM')
-  const [imageLoaded, setImageLoaded] = useState(false)
-
-  const sectionRef = useRef(null)
-  const typographyRef = useRef(null)
-  const personRef = useRef(null)
+  const titleContainerRef = useRef(null)
+  const titleTextRef = useRef(null)
   const subtitleRef = useRef(null)
-  const contactRef = useRef(null)
-  const arrowIconRef = useRef(null)
-
-  // Preload hero image
-  useEffect(() => {
-    const img = new Image()
-    img.src = '/images/portrait-hero.png'
-    img.onload = () => {
-      setImageLoaded(true)
-    }
-    if (img.complete) {
-      setImageLoaded(true)
-    }
-  }, [])
+  const actionsRef = useRef(null)
+  const personRef = useRef(null)
 
   useEffect(() => {
-    if (!imageLoaded) return
-
-    // Lock page scrolling during intro animation
+    window.scrollTo(0, 0)
     document.body.style.overflow = 'hidden'
 
     const targetWord = 'PORTFOLIO'
-    const startWord = 'JEEVANANTHAM'
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*'
-    let scrambleInterval = null
+    const initialWord = 'JEEVANANTHAM'
+    let iteration = 0
+    let intervalId = null
     let timeoutId = null
+    let isCancelled = false
 
-    // Master GSAP Timeline
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.body.style.overflow = 'auto'
-      },
+    const imagePromise = new Promise((resolve) => {
+      const img = new window.Image()
+      img.src = '/images/portrait-hero.png'
+      if (img.complete) {
+        resolve()
+      } else {
+        img.onload = resolve
+        img.onerror = resolve
+      }
     })
 
-    // Set initial states
-    gsap.set(personRef.current, { y: '100vh', opacity: 1 })
-    gsap.set([subtitleRef.current, contactRef.current], { opacity: 0, y: 50 })
+    const delayPromise = new Promise((resolve) => {
+      timeoutId = setTimeout(resolve, 800)
+    })
 
-    // Step 1: Wait approx 1 second after page load
-    timeoutId = setTimeout(() => {
-      let iteration = 0
-      const totalSteps = 20
+    Promise.all([imagePromise, delayPromise]).then(() => {
+      if (isCancelled) return
 
-      // Step 2: Progressive letter scramble effect
-      scrambleInterval = setInterval(() => {
-        iteration++
-        const progress = iteration / totalSteps
+      intervalId = setInterval(() => {
+        setDisplayText(() =>
+          targetWord
+            .split('')
+            .map((char, index) => {
+              if (index < Math.floor(iteration)) {
+                return targetWord[index]
+              }
+              if (index < initialWord.length) {
+                return initialWord[index]
+              }
+              return ''
+            })
+            .join('')
+        )
 
-        const scrambled = targetWord
-          .split('')
-          .map((char, index) => {
-            const letterThreshold = index / targetWord.length
-            if (progress > letterThreshold + 0.15) {
-              return char
-            }
-            if (iteration % 2 === 0 && index < startWord.length) {
-              return startWord[index]
-            }
-            return chars[Math.floor(Math.random() * chars.length)]
-          })
-          .join('')
-
-        setDisplayText(scrambled)
-
-        if (iteration >= totalSteps) {
-          clearInterval(scrambleInterval)
+        if (iteration >= 9) {
+          clearInterval(intervalId)
           setDisplayText(targetWord)
 
-          // Step 4 & 5: Coordinated upward animations
           const isMobile = window.innerWidth < 768
+          const tl = gsap.timeline({
+            onComplete: () => {
+              document.body.style.overflow = 'auto'
+              if (onPreloadComplete) onPreloadComplete()
+            },
+          })
 
+          // Smooth coordinate animation strictly adhering to reference proportions
           tl.to(
-            typographyRef.current,
+            titleContainerRef.current,
             {
-              y: isMobile ? '-18vh' : '-6vh',
-              scale: isMobile ? 0.9 : 1,
+              top: isMobile ? '24%' : '45%',
               duration: 1.5,
               ease: 'power3.inOut',
             },
-            '+=0.2'
+            '+=0.15'
           )
-            // Step 6: Animate person upward from 100vh to 0
-            .to(
-              personRef.current,
-              {
-                y: 0,
-                duration: 1.5,
-                ease: 'power3.out',
-              },
-              '<' // synchronized with typography movement
-            )
-            // Step 7: Reveal subtitle and contact CTA
-            .to(
-              [subtitleRef.current, contactRef.current],
-              {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: 'power3.out',
-                stagger: 0.2,
-              },
-              '-=0.8'
-            )
+
+          tl.fromTo(
+            [subtitleRef.current, actionsRef.current],
+            { y: 50, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 1.2,
+              stagger: 0.18,
+              ease: 'power3.out',
+            },
+            '-=1.0'
+          )
+
+          tl.fromTo(
+            personRef.current,
+            { y: '100vh' },
+            {
+              y: 0,
+              duration: 1.5,
+              ease: 'power3.out',
+            },
+            '-=1.2'
+          )
         }
+
+        iteration += 1 / 3
       }, 50)
-    }, 1000)
+    })
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId)
-      if (scrambleInterval) clearInterval(scrambleInterval)
-      tl.kill()
+      isCancelled = true
       document.body.style.overflow = 'auto'
+      if (timeoutId) clearTimeout(timeoutId)
+      if (intervalId) clearInterval(intervalId)
     }
-  }, [imageLoaded])
+  }, [onPreloadComplete])
 
   const scrollToContact = (e) => {
     e.preventDefault()
@@ -135,104 +125,97 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505] select-none"
+      className="relative min-h-screen flex items-end justify-center bg-cover bg-center bg-no-repeat overflow-hidden select-none"
       style={{
-        background: 'radial-gradient(circle at 50% 50%, #151515 0%, #050505 65%, #000000 100%)',
+        background: 'radial-gradient(circle at 50% 50%, #1e1e1e 0%, #050505 75%, #000000 100%)',
       }}
     >
-      {/* Very subtle dark overlay and 2px backdrop blur */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none z-[1]" />
+      {/* Subtle backdrop overlay and anti-grain blur */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
 
-      {/* Layer 2: Massive Metallic Typography (Z-Index 10: Behind person) */}
+      {/* Layer 1: Balanced Metallic Title & Attached Controls (Behind Portrait) */}
       <div
-        ref={typographyRef}
-        className="absolute inset-x-0 flex items-center justify-center pointer-events-none z-10 transition-transform will-change-transform"
+        ref={titleContainerRef}
+        className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none flex flex-col items-start w-max will-change-transform"
       >
+        {/* Exact Reference Sized Metallic Typography */}
         <h1
-          className="font-black text-center tracking-tighter uppercase whitespace-nowrap drop-shadow-[0_25px_35px_rgba(0,0,0,0.9)]"
+          ref={titleTextRef}
+          className="text-[15vw] sm:text-[14vw] md:text-[10rem] lg:text-[13rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl pr-3 md:pr-8 leading-none uppercase"
           style={{
-            fontSize: 'clamp(3.8rem, 16vw, 15rem)',
-            letterSpacing: '-0.06em',
-            background: 'linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 35%, #9CA3AF 65%, #374151 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
           }}
         >
           {displayText}
         </h1>
+
+        {/* Subtitle: Left Aligned Under Typography */}
+        <div
+          ref={subtitleRef}
+          className="absolute -bottom-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:-bottom-14 md:left-6 text-white drop-shadow-md z-10 opacity-0 w-max text-center md:text-left pointer-events-auto"
+        >
+          <p className="text-sm sm:text-lg md:text-2xl lg:text-3xl tracking-tight">
+            <span className="font-extrabold uppercase text-white">AI</span>{' '}
+            <span className="font-light italic text-gray-300">Engineer</span>
+          </p>
+          <span className="block text-[10px] sm:text-xs md:text-xs font-mono text-[#CCFF00] tracking-wider mt-1 uppercase font-semibold">
+            Machine Learning · Generative AI · Agentic AI
+          </span>
+        </div>
+
+        {/* Action Buttons: Right Aligned Under Typography */}
+        <div
+          ref={actionsRef}
+          className="absolute -bottom-20 left-1/2 -translate-x-1/2 md:translate-x-0 md:-bottom-14 md:left-auto md:right-8 flex items-center gap-2 md:gap-3 pointer-events-auto z-10 opacity-0 w-max"
+        >
+          {/* Circular Arrow Button */}
+          <a
+            href="#contact"
+            onClick={scrollToContact}
+            className="group w-8 h-8 md:w-11 md:h-11 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/40 hover:bg-white/10 hover:border-[#CCFF00] transition-all duration-300 cursor-pointer shadow-lg"
+            aria-label="Scroll to contact section"
+          >
+            <ArrowUpRight className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-300 group-hover:text-[#CCFF00] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          {/* Contact Button */}
+          <a
+            href="#contact"
+            onClick={scrollToContact}
+            className="px-4 py-1.5 md:px-5 md:py-2.5 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/40 hover:bg-white/10 hover:border-gray-300 text-gray-300 hover:text-white transition-all duration-300 cursor-pointer shadow-lg"
+          >
+            <span className="text-xs md:text-sm italic font-light tracking-wider">
+              Contact
+            </span>
+          </a>
+
+          {/* Live Portfolio Button */}
+          <a
+            href="https://jeevanantham3.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3.5 py-1.5 md:px-4 md:py-2.5 rounded-full border border-[#CCFF00]/40 flex items-center gap-1.5 backdrop-blur-md bg-black/40 hover:bg-[#CCFF00]/10 hover:border-[#CCFF00] text-[#CCFF00] transition-all duration-300 cursor-pointer shadow-lg"
+          >
+            <span className="text-[11px] md:text-xs font-mono tracking-wider font-medium uppercase">
+              Live
+            </span>
+            <ArrowUpRight className="w-3 h-3 text-[#CCFF00]" />
+          </a>
+        </div>
       </div>
 
-      {/* Layer 3: Person / Hero Cutout Image (Z-Index 20: Overlapping Typography) */}
+      {/* Layer 2: Authentic Professional Portrait Cutout (Overlapping Center of Title) */}
       <div
         ref={personRef}
-        className="relative z-20 flex items-end justify-center h-screen w-full pointer-events-none will-change-transform"
+        className="relative z-10 text-center text-white flex flex-col items-center w-full pointer-events-none translate-y-[100vh] will-change-transform"
       >
-        <div className="relative max-h-[88vh] md:max-h-[92vh] flex items-end justify-center">
-          {/* Subtle bottom shadow vignette to blend feet/base seamlessly */}
-          <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-transparent z-10" />
-
+        <div className="relative w-full max-w-[290px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[460px] flex items-end justify-center">
           <img
             src="/images/portrait-hero.png"
             alt="Jeevanantham A — AI Engineer"
-            className="w-[340px] sm:w-[440px] md:w-[540px] lg:w-[620px] max-h-[84vh] object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)]"
+            className="w-full object-contain object-bottom drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]"
           />
-        </div>
-      </div>
-
-      {/* Layer 4: Subtitle & Contact Controls (Z-Index 30: Forefront) */}
-      <div className="absolute inset-x-0 bottom-8 md:bottom-12 z-30 max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        {/* Editorial Subtitle */}
-        <div
-          ref={subtitleRef}
-          className="text-center md:text-left drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
-        >
-          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white tracking-tight">
-            <span className="font-extrabold uppercase">AI</span>{' '}
-            <span className="font-light italic text-[#9CA3AF] editorial-serif">Engineer</span>
-          </div>
-          <p className="text-xs md:text-sm text-[#9CA3AF] tracking-wider uppercase mt-1 font-mono">
-            Machine Learning · Generative AI · Agentic AI
-          </p>
-        </div>
-
-        {/* Minimalist Contact CTA */}
-        <div
-          ref={contactRef}
-          className="flex items-center gap-3"
-        >
-          {/* Circular arrow button */}
-          <a
-            href="#contact"
-            onClick={scrollToContact}
-            onMouseEnter={() => {
-              if (arrowIconRef.current) {
-                gsap.to(arrowIconRef.current, { rotation: 45, duration: 0.3, ease: 'power2.out' })
-              }
-            }}
-            onMouseLeave={() => {
-              if (arrowIconRef.current) {
-                gsap.to(arrowIconRef.current, { rotation: 0, duration: 0.3, ease: 'power2.out' })
-              }
-            }}
-            className="group flex items-center justify-center w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20 hover:border-[#CCFF00] hover:bg-black/90 transition-all duration-300 shadow-xl"
-            aria-label="Scroll to contact"
-          >
-            <div ref={arrowIconRef} className="will-change-transform">
-              <ArrowUpRight className="w-5 h-5 text-white group-hover:text-[#CCFF00] transition-colors" />
-            </div>
-          </a>
-
-          {/* Pill Contact Button */}
-          <a
-            href="#contact"
-            onClick={scrollToContact}
-            className="px-8 py-3 rounded-full text-sm font-semibold tracking-wider uppercase bg-black/60 hover:bg-white/10 text-white hover:text-[#CCFF00] border border-white/20 hover:border-[#CCFF00] backdrop-blur-md transition-all duration-300 shadow-xl"
-          >
-            Contact
-          </a>
         </div>
       </div>
     </section>
