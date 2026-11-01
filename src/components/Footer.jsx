@@ -1,6 +1,6 @@
 import React from 'react'
 import { ArrowUpRight, Mail, Phone, MapPin, ExternalLink } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from './Icons'
+import { GithubIcon, LinkedinIcon, LeetcodeIcon } from './Icons'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,16 +15,28 @@ export default function Footer() {
 
   const socialLinks = [
     {
+      name: 'LinkedIn',
+      label: 'Jeevanantham -aj',
+      url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
+      icon: LinkedinIcon,
+    },
+    {
+      name: 'Email',
+      label: 'arjunjeeva33@gmail.com',
+      url: 'mailto:arjunjeeva33@gmail.com',
+      icon: Mail,
+    },
+    {
       name: 'GitHub',
       label: 'Jeeva1117',
       url: 'https://github.com/Jeeva1117',
       icon: GithubIcon,
     },
     {
-      name: 'LinkedIn',
-      label: 'Jeevanantham -aj',
-      url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
-      icon: LinkedinIcon,
+      name: 'LeetCode',
+      label: 'arjunjeeva17',
+      url: 'https://leetcode.com/u/arjunjeeva17/',
+      icon: LeetcodeIcon,
     },
   ]
 
@@ -133,16 +145,17 @@ export default function Footer() {
 
         {/* Social Links Row with Thin Divider */}
         <div className="my-10 pt-8 border-t border-white/10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon
+              const isMail = social.url.startsWith('mailto:')
               return (
                 <a
                   key={social.name}
                   href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-[#CCFF00] transition-all duration-300 flex items-center justify-between"
+                  target={isMail ? undefined : '_blank'}
+                  rel={isMail ? undefined : 'noopener noreferrer'}
+                  className="group p-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-[#CCFF00] transition-all duration-300 flex items-center justify-between cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <Icon className="w-4 h-4 text-[#CCFF00] group-hover:scale-110 transition-transform" />

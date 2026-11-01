@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Loader2, Mail, Phone, MapPin, Send } from 'lucide-react'
-import { LinkedinIcon, GithubIcon } from './Icons'
+import { LinkedinIcon, GithubIcon, LeetcodeIcon } from './Icons'
 import Globe from './Globe'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -129,16 +129,28 @@ Thank you!`
 
   const socialLinks = [
     {
+      name: 'LinkedIn',
+      label: 'Jeevanantham -aj',
+      icon: LinkedinIcon,
+      url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
+    },
+    {
+      name: 'Email',
+      label: 'arjunjeeva33@gmail.com',
+      icon: Mail,
+      url: 'mailto:arjunjeeva33@gmail.com',
+    },
+    {
       name: 'GitHub',
       label: 'Jeeva1117',
       icon: GithubIcon,
       url: 'https://github.com/Jeeva1117',
     },
     {
-      name: 'LinkedIn',
-      label: 'Jeevanantham -aj',
-      icon: LinkedinIcon,
-      url: 'https://linkedin.com/in/jeevanantham-arjunkumar-33aj',
+      name: 'LeetCode',
+      label: 'arjunjeeva17',
+      icon: LeetcodeIcon,
+      url: 'https://leetcode.com/u/arjunjeeva17/',
     },
   ]
 
@@ -249,12 +261,13 @@ Thank you!`
               <div className="flex items-center gap-4">
                 {socialLinks.map((social) => {
                   const Icon = social.icon
+                  const isMail = social.url.startsWith('mailto:')
                   return (
                     <a
                       key={social.name}
                       href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={isMail ? undefined : '_blank'}
+                      rel={isMail ? undefined : 'noopener noreferrer'}
                       className="group flex items-center justify-center w-12 h-12 rounded-full bg-white/[0.06] hover:bg-[#CCFF00] border border-white/15 hover:border-[#CCFF00] transition-all duration-300 shadow-xl hover:scale-105"
                       aria-label={social.name}
                       title={`${social.name} - ${social.label}`}
