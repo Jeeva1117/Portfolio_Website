@@ -14,25 +14,23 @@ export default function Projects() {
   const projectsData = [
     {
       num: '01',
-      title: 'Self-Healing RAG Agent',
-      domain: 'Generative AI · Agentic AI',
+      title: 'PerceptGuard — AI-Powered Predictive Road Safety System',
+      domain: 'AI · Computer Vision · Predictive Analytics · Road Safety',
       description:
-        'An intelligent self-healing Retrieval-Augmented Generation system that automatically detects retrieval failures, evaluates response quality, and improves answers through multi-agent workflows.',
+        'PerceptGuard is an AI-powered predictive road safety system designed to analyze road traffic scenes, track surrounding vehicles and pedestrians, predict their future movement, and identify potential collision risks before they occur. The system focuses on proactive road safety by combining object detection, multi-object tracking, trajectory prediction, and risk assessment to understand dynamic traffic situations.',
       tech: [
         'Python',
-        'LangGraph',
-        'LangChain',
-        'Groq LLM',
-        'RAG',
-        'Hybrid Search',
-        'Reranking',
+        'PyTorch',
+        'YOLOv8',
+        'ByteTrack',
+        'OpenCV',
         'FastAPI',
         'React',
-        'PostgreSQL',
+        'TypeScript',
       ],
-      image: '/images/project-rag.webp',
-      demoUrl: 'https://github.com/Jeeva1117',
-      githubUrl: 'https://github.com/Jeeva1117',
+      image: '/images/project-perceptguard.webp',
+      demoUrl: null,
+      githubUrl: 'https://github.com/Jeeva1117/PerceptGuard-AI',
       reverse: false,
       isFlagship: true,
     },
@@ -53,13 +51,37 @@ export default function Projects() {
         '3D Avatar Animation',
       ],
       image: '/images/project-sign.webp',
-      demoUrl: 'https://github.com/Jeeva1117',
-      githubUrl: 'https://github.com/Jeeva1117',
+      demoUrl: null,
+      githubUrl: 'https://github.com/Jeeva1117/AI-Speech-to-Sign-Language-Translator-',
       reverse: true,
       isFlagship: false,
     },
     {
       num: '03',
+      title: 'Self-Healing RAG Agent',
+      domain: 'Generative AI · Agentic AI',
+      description:
+        'An intelligent self-healing Retrieval-Augmented Generation system that automatically detects retrieval failures, evaluates response quality, and improves answers through multi-agent workflows.',
+      tech: [
+        'Python',
+        'LangGraph',
+        'LangChain',
+        'Groq LLM',
+        'RAG',
+        'Hybrid Search',
+        'Reranking',
+        'FastAPI',
+        'React',
+        'PostgreSQL',
+      ],
+      image: '/images/project-rag.webp',
+      demoUrl: null,
+      githubUrl: 'https://github.com/Jeeva1117/Self-Healing-RAG-Agent',
+      reverse: false,
+      isFlagship: false,
+    },
+    {
+      num: '04',
       title: 'AI Data Analyst Agent',
       domain: 'Agentic AI · Data Science',
       description:
@@ -76,14 +98,14 @@ export default function Projects() {
         'PostgreSQL',
       ],
       image: '/images/project-data-analyst.webp',
-      demoUrl: 'https://github.com/Jeeva1117',
+      demoUrl: null,
       githubUrl: 'https://github.com/Jeeva1117',
-      reverse: false,
+      reverse: true,
       isFlagship: false,
     },
     {
-      num: '04',
-      title: 'TubeNexa – AI-Powered YouTube Analytics',
+      num: '05',
+      title: 'TubeNexa — AI-Powered YouTube Analytics',
       domain: 'AI Analytics · Machine Learning',
       description:
         'An AI-powered YouTube analytics platform that evaluates channel performance, analyzes video metrics, identifies growth opportunities, and provides intelligent recommendations for content creators.',
@@ -96,17 +118,17 @@ export default function Projects() {
         'Data Visualization',
       ],
       image: '/images/project-tubenexa.webp',
-      demoUrl: 'https://github.com/Jeeva1117',
-      githubUrl: 'https://github.com/Jeeva1117',
-      reverse: true,
+      demoUrl: null,
+      githubUrl: 'https://github.com/Jeeva1117/tubenexa.ai',
+      reverse: false,
       isFlagship: false,
     },
     {
-      num: '05',
-      title: 'AgroNixa – AI-Powered Plant Disease Detection & Voice Assistant',
+      num: '06',
+      title: 'AgroNexa — AI-Powered Plant Disease Detection and Voice Agent',
       domain: 'AI · Machine Learning · Voice AI',
       description:
-        'An intelligent agricultural AI assistant that detects plant diseases from leaf images, identifies potential infections, and provides relevant treatment recommendations. It also allows farmers to interact through voice.',
+        'AgroNexa is an AI-powered agricultural assistance project that combines plant disease detection with a smart voice assistant to help users identify plant health issues and access useful agricultural guidance.',
       tech: [
         'Python',
         'Machine Learning',
@@ -119,10 +141,10 @@ export default function Projects() {
         'NLP',
         'FastAPI',
       ],
-      image: '/images/project-agronixa.webp',
-      demoUrl: 'https://github.com/Jeeva1117',
+      image: '/images/project-agronexa.webp',
+      demoUrl: null,
       githubUrl: 'https://github.com/Jeeva1117',
-      reverse: false,
+      reverse: true,
       isFlagship: false,
     },
   ]
@@ -242,7 +264,7 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* 5 Original Projects Showcase */}
+        {/* 6 Featured AI Projects Showcase */}
         <div className="mt-20 md:mt-28 space-y-28 md:space-y-40">
           {projectsData.map((project, index) => {
             return (
@@ -339,26 +361,35 @@ export default function Projects() {
                     {/* Action CTAs */}
                     <div className="project-text-elem flex items-center gap-4">
                       {/* Live Demo Button */}
-                      <a
-                        href={project.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#CCFF00] hover:bg-[#b8e600] text-black border border-[#CCFF00] transition-all duration-300 shadow-md"
-                      >
-                        <span>Live Demo</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#CCFF00] hover:bg-[#b8e600] text-black border border-[#CCFF00] transition-all duration-300 shadow-md"
+                        >
+                          <span>Live Demo</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
 
                       {/* GitHub Button */}
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-transparent hover:bg-white text-white hover:text-black border border-white/30 hover:border-white transition-all duration-300"
-                      >
-                        <GithubIcon className="w-3.5 h-3.5" />
-                        <span>GitHub</span>
-                      </a>
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs uppercase tracking-wider transition-all duration-300 ${
+                            project.demoUrl
+                              ? 'font-semibold bg-transparent hover:bg-white text-white hover:text-black border border-white/30 hover:border-white'
+                              : 'font-bold bg-[#CCFF00] hover:bg-[#b8e600] text-black border border-[#CCFF00] shadow-md'
+                          }`}
+                        >
+                          <GithubIcon className="w-3.5 h-3.5" />
+                          <span>GitHub</span>
+                          {!project.demoUrl && <ArrowUpRight className="w-3.5 h-3.5" />}
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
